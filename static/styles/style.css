@@ -1,0 +1,465 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.body__overflowHidden {
+    overflow: hidden;
+}
+
+/* header */
+
+header {
+    background: linear-gradient(180deg, rgba(0, 132, 255, 0.6) 0%, rgba(0, 0, 0, 0) 60%);
+    box-shadow: 0px 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.header__background {
+    background-image: url(../img/background.jpeg);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: -2;
+}
+
+.header__center {
+    padding: 95px 20px;
+    height: 100vh;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header__center__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    height: 100px;
+    cursor: pointer;
+}
+
+.buttonAuth {
+    color: white;
+    cursor: pointer;
+    display: flex;
+    padding-bottom: 5px;
+    transition: .5s;
+}
+
+.buttonAuth:hover {
+    color: #aaa;
+}
+
+.buttonAuth__text {
+    font-weight: bold;
+    line-height: 22px;
+    font-size: 24px;
+}
+
+.buttonAuth__img {
+    width: 30px;
+}
+
+.header__center__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.header__center__title {
+    font-size: 64px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+.header__center__line {
+    height: 5px;
+    background-color: #fff;
+    width: 340px;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+.description {
+    color: #fff;
+    text-shadow: 2px 1px 2px rgba(0, 0, 0, 1);
+    font-size: 24px;
+    text-align: center;
+}
+
+.header__center__bottom__arrow__link {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.header__center__bottom__arrow__img {
+    width: 70px;
+    cursor: pointer;
+}
+
+
+
+/* main */
+
+main {
+    width: 100%;
+    /* background: linear-gradient(#002C5A 200px, #0084ff); */
+    background: #0084ff;
+}
+
+.main__wrapper {
+    display: flex;
+    gap: 100px;
+    padding: 20px;
+}
+
+.main__wrapper__left {
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 35px 20px;
+    height: fit-content;
+    background: #0084ff;
+    box-shadow: 0 0 10px black;
+}
+
+.main__wrapper__left__img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    z-index: 2;
+    position: relative;
+    transition: .5s;
+    transition-delay: 0 ;
+    display: block;
+}
+
+.main__wrapper__left__img_active {
+    transform: translateX(95px);
+    transition-delay: .5s;
+}
+
+.main__wrapper__left__indicatorWrapper {
+    position: absolute;
+    overflow: hidden;
+    width: 170px;
+    height: 220px;
+    top: 0px;
+    right: -155px;
+    transition: .5s;
+}
+
+.main__wrapper__left__indicator {
+    border-radius: 50%;
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    top: 25px;
+    right: 70px;
+    background: #0084ff;
+    box-shadow: 0 0 10px black;
+}
+
+.main__wrapper__left__indicator::before {
+    content: '';
+    position: absolute;
+    top: -29px;
+    left: 85px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: -15px 12px #0084ff;
+}
+
+.main__wrapper__left__indicator::after {
+    content: '';
+    position: absolute;
+    top: 169px;
+    left: 85px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: -15px -12px #0084ff;
+}
+
+.main__wrapper__left__img:nth-child(1).main__wrapper__left__img_active ~ .main__wrapper__left__indicatorWrapper {
+    transform: translateY(calc(160px * 0));
+}
+
+.main__wrapper__left__img:nth-child(2).main__wrapper__left__img_active ~ .main__wrapper__left__indicatorWrapper {
+    transform: translateY(calc(160px * 1));
+}
+
+.main__wrapper__left__img:nth-child(3).main__wrapper__left__img_active ~ .main__wrapper__left__indicatorWrapper {
+    transform: translateY(calc(160px * 2));
+}
+
+.main__wrapper__left__img:nth-child(4).main__wrapper__left__img_active ~ .main__wrapper__left__indicatorWrapper {
+    transform: translateY(calc(160px * 3));
+}
+
+.main__wrapper__right {
+    padding: 20px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.main__wrapper__right__header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.main__wrapper__right__subheader {
+    margin-bottom: 15px;
+}
+
+.main__wrapper__right__text {
+    line-height: 36px;
+}
+
+
+/* login */
+
+.loginForm {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transition: .2s;
+}
+
+.loginForm_hide {
+    opacity: 0;
+    z-index: -1;
+}
+
+.loginForm__wrapper {
+    width: 400px;
+    height: 500px;
+    perspective: 1000px;
+}
+
+.loginForm__wrapper__login, .loginForm__wrapper__registration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+    backface-visibility: hidden;
+    background-image: url(../img/login_background.png);
+    padding: 50px;
+}
+
+.loginForm__wrapper__registration {
+    transform: rotateY(180deg);
+}
+
+.loginForm__wrapper__registration_rotate {
+    transform: rotateY(360deg);
+}
+
+.loginForm__wrapper__login_rotate {
+    transform: rotateY(180deg);
+}
+
+.close_img {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 15px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.loginForm__wrapper__title {
+    font-size: 32px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 54px;
+    color: #00407A;
+    font-weight: 700;
+}
+
+.loginForm__wrapper__inputWrapper {
+    position: relative;
+}
+
+.loginForm__wrapper__inputWrapper::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 90.5%;
+    background: #fff;
+    left: 14px;
+    bottom: 6px;
+}
+
+.loginForm__wrapper__input {
+    border-radius: 5px;
+    background: #0092CB;
+    width: 100%;
+    padding: 10px 14px;
+    color: #fff;
+    position: relative;
+    margin-top: 26px;
+    border: none;
+    display: block;
+    outline: none;
+    padding-right: 45px;
+}
+
+.loginForm__wrapper__input::placeholder {
+    color: #fff;
+}
+
+.loginForm__wrapper__inputWrapper__eye {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    width: 20px;
+    cursor: pointer;
+    filter: invert(1);
+}
+
+.loginForm__wrapper__inputWrapper::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 90.5%;
+    background: #fff;
+    left: 14px;
+    bottom: 6px;
+}
+
+.button_wrapper {
+    display: flex;
+    margin-top: 45px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginForm__wrapper__submit {
+    border: none;
+    background: #72CCFF;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 5px 25px;
+    cursor: pointer;
+    transition: .5s;
+    width: fit-content;
+}
+
+.loginForm__wrapper__submit:hover {
+    background: #002C5A;
+}
+
+.loginForm__wrapper__btn {
+    margin-top: 58px;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+}
+
+.loginForm__wrapper__btn::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 3px;
+    transition: .3s;
+    background: #fff;
+}
+
+.loginForm__wrapper__btn:hover::after {
+    width: 100%;
+}
+
+/* footer */
+
+footer {
+    background: #fff;
+}
+
+.footer {
+    padding: 40px 20px;
+    display: flex;
+    gap: 40px;
+    color: #fff;
+    color: #000;
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
+.footer__wrapper {
+    width: 50%;
+}
+
+
+/* media */
+
+@media (max-width: 1140px) {
+    .header__center__title {
+        font-size: 25pt;
+    }
+
+    .header__center {
+        gap: 50px;
+        max-width: 545px;
+    }
+
+    .main__wrapper {
+        max-width: 545px;
+    }
+
+    .domitories__wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .sections-title {
+        text-align: center;
+    }
+
+    footer {
+        flex-direction: column;
+        max-width: 545px;
+    }
+
+    .footer__wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .header__center__menu {
+        padding: 10px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .header__center__title {
+        font-size: 18pt;
+    }
+}
