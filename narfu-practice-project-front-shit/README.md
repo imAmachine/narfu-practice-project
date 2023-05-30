@@ -1,1 +1,0 @@
-This project developing for education purposes. Project has 3 main objectives: 1. viewing list of dormitories 2. sending applications for accomodation in the dormitory to university 3. simplify process consideration of applications for university administration
