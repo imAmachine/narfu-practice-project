@@ -1,0 +1,5 @@
+{"key": "SQLALCHEMY_DATABASE_URI",
+"username": "postgres",
+"password": "123",
+"host": "localhost",
+"db": "narfudb"}
