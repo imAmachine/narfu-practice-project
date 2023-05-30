@@ -1,6 +1,12 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template
+
+import jsonworker
+from database import DbConnection
 
 app = Flask(__name__)
+conn = jsonworker.read_json("connection.json")
+db = DbConnection(conn["key"], conn["username"], conn["password"], conn["host"], conn["db"])
+db.db_init(app)
 
 
 @app.route('/')
