@@ -1,0 +1,17 @@
+footer {
+    background: #fff;
+}
+
+.footer {
+    padding: 40px 20px;
+    display: flex;
+    gap: 40px;
+    color: #fff;
+    color: #000;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.footer__wrapper {
+    width: 50%;
+}
