@@ -32,8 +32,5 @@
         </div>
     </footer>
 </body>
-<script src="{{ url_for('static', filename='scripts/login.js')}}"></script>
-<script src="{{ url_for('static', filename='scripts/selectRoom.js')}}"></script>
-<script src="{{ url_for('static', filename='scripts/slider.js')}}"></script>
-<script src="{{ url_for('static', filename='scripts/lk.js')}}"></script>
+{% block scripts %}{% endblock %}
 </html>
