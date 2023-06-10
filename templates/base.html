@@ -21,7 +21,16 @@
     {% block body %}{% endblock %}
     <header>{% block header %}{% endblock %}</header>
     <main>{% block main %}{% endblock %}</main>
-    <footer>{% block footer %}{% endblock %}</footer>
+    <footer>
+        <div class="footer">
+            <div class="footer__wrapper">
+                Северный (Арктический) федеральный университет имени М.В. Ломоносова
+            </div>
+            <div class="footer__wrapper">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora tenetur dignissimos omnis voluptate enim reiciendis provident maxime consequatur amet?
+            </div>
+        </div>
+    </footer>
 </body>
 <script src="{{ url_for('static', filename='scripts/login.js')}}"></script>
 <script src="{{ url_for('static', filename='scripts/selectRoom.js')}}"></script>
