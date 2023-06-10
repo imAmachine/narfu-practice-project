@@ -2,26 +2,19 @@ import psycopg2
 
 
 class DBService:
-    def __init__(self, db, username, password, host, port):
-        self.db = db
-        self.username = username
-        self.password = password
-        self.host = host
-        self.port = port
-        self.conn = None
-        self.cur = None
+    def __init__(self, connection):
+        self.connection = connection
+        self.cursor = None
 
     def service_init(self, schema):
-        self.conn = psycopg2.connect(dbname=self.db, user=self.username, password=self.password,
-                                     host=self.host, port=self.port)
-        self.cur = self.conn.cursor()
+        self.cursor = self.connection.cursor(schema)
 
-    def exec_select(self, obj, cols):
+    def exec_select(self, query):
         """
-            Method executing SELECT query from an object representing a database table
+        Method executing a SELECT query
 
-            :param obj: database table object
-            :param cols: param representing columns to selecting from a table
-            :return: list of table rows
+        :param query: SQL query to execute
+        :return: list of query results
         """
-        return self.cur.execute(obj.get_sql_select(cols))
+        self.cursor.execute(query)
+        return self.cursor.fetchall()

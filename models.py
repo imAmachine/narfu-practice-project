@@ -1,3 +1,6 @@
+import datetime
+
+
 class UserAuth:
     def __init__(self, user_id, login, password):
         self.user_id = user_id
@@ -63,7 +66,8 @@ class Dormitory:
 
 
 class Application:
-    def __init__(self, application_id, user_id, dormitory_id, application_date, application_status):
+    def __init__(self, application_id, user_id, dormitory_id, application_date=datetime.datetime.now(),
+                 application_status='In work'):
         self.application_id = application_id
         self.user_id = user_id
         self.dormitory_id = dormitory_id
@@ -75,7 +79,7 @@ class Application:
             'application_id': self.application_id,
             'user_id': self.user_id,
             'dormitory_id': self.dormitory_id,
-            'application_date': str(self.application_date),
+            'application_date': self.application_date,
             'application_status': self.application_status
         }
 
