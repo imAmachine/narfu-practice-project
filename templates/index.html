@@ -1,100 +1,111 @@
 {% extends 'base.html' %}
 {% block title %}ВЫБЕРИ СВОЁ МЕСТО В САФУ{% endblock %}
 {% block body %}
-<div class="loginForm loginForm_hide">
-    <div class="loginForm__wrapper">
-        <div class="loginForm__wrapper__login">
-            <img class="close_img" src="./static/img/close.png">
-            <div class="loginForm__wrapper__title">Вход в систему</div>
-            <div class="loginForm__wrapper__inputWrapper">
-                <input type="text" class="loginForm__wrapper__input" placeholder="Логин">
+    <div class="loginForm loginForm_hide">
+        <div class="loginForm__wrapper">
+            <div class="loginForm__wrapper__login">
+                <img class="close_img" src="../static/img/close.png">
+                <div class="loginForm__wrapper__title">Вход в систему</div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    <input type="text" class="loginForm__wrapper__input" placeholder="Логин">
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    <input type="password" class="loginForm__wrapper__input" placeholder="Пароль">
+                    <img src="../static/img/eye.png" alt="Показать/скрыть пароль" class="loginForm__wrapper__inputWrapper__eye">
+                </div>                
+                <div class="button_wrapper">
+                    <button type="submit" class="loginForm__wrapper__submit">ВОЙТИ</button>
+                    <div class="loginForm__wrapper__btn">Регистрация</div>
+                </div>
             </div>
-            <div class="loginForm__wrapper__inputWrapper">
-                <input type="password" class="loginForm__wrapper__input" placeholder="Пароль">
-                <img src="./static/img/eye.png" alt="Показать/скрыть пароль" class="loginForm__wrapper__inputWrapper__eye">
-            </div>
-            <div class="button_wrapper">
-                <button type="submit" class="loginForm__wrapper__submit">ВОЙТИ</button>
-                <div class="loginForm__wrapper__btn">Регистрация</div>
-            </div>
-        </div>
-        <div class="loginForm__wrapper__registration">
-            <img class="close_img" src="./static/img/close.png">
-            <div class="loginForm__wrapper__title">Регистрация</div>
-            <div class="loginForm__wrapper__inputWrapper">
-                <input type="text" class="loginForm__wrapper__input" placeholder="Логин">
-            </div>
-            <div class="loginForm__wrapper__inputWrapper">
-                <input type="password" class="loginForm__wrapper__input" placeholder="Пароль">
-                <img src="./static/img/eye.png" alt="Показать/скрыть пароль" class="loginForm__wrapper__inputWrapper__eye">
-            </div>
-            <div class="button_wrapper">
-                <button type="submit" class="loginForm__wrapper__submit">ЗАРЕГИСТРИРОВАТЬСЯ</button>
-                <div class="loginForm__wrapper__btn">Войти</div>
+            <div class="loginForm__wrapper__registration">
+                <img class="close_img" src="../static/img/close.png">
+                <div class="loginForm__wrapper__title">Регистрация</div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    <input type="text" class="loginForm__wrapper__input" placeholder="Логин">
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    <input type="password" class="loginForm__wrapper__input" placeholder="Пароль">
+                    <img src="../static/img/eye.png" alt="Показать/скрыть пароль" class="loginForm__wrapper__inputWrapper__eye">
+                </div>               
+                <div class="button_wrapper">
+                    <button type="submit" class="loginForm__wrapper__submit">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+                    <div class="loginForm__wrapper__btn">Войти</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block header %}
-<div class="header__background"></div>
-<div class="header__center">
-    <div class="header__center__menu">
-        <img src="./static/img/logo.png" class="logo">
-        <div class="buttonAuth">
-            <span class="buttonAuth__text">войти</span>
-            <img src="./static/img/auth.png" alt="" class="buttonAuth__img">
+    <div class="header__background"></div>
+    <div class="header__center">
+        <div class="header__center__menu">
+            <img src="../static/img/logo.png" class="logo">
+            <div class="buttonAuth">
+                <span class="buttonAuth__text">войти</span>
+                <img src="../static/img/auth.png" alt="" class="buttonAuth__img">
+            </div>
         </div>
-    </div>
-    <div class="header__center__bottom">
-        <div class="header__center__title">ВЫБЕРИ СВОЕ МЕСТО В САФУ!</div>
-        <div class="header__center__line"></div>
-        <div class="description">
-            На нашем сайте Вы сможете выбрать себе подходящее место проживания на период обучения в университете. Вы сами можете подобрать себе общежитие и комнату, внутри этого общежития по подходящим Вам параметрам. Чтобы приступить к выбору, Вам необходима учётная запись на нашем сайте.
+        <div class="header__center__bottom">
+            <div class="header__center__title">ВЫБЕРИ СВОЕ МЕСТО В САФУ!</div>
+            <div class="header__center__line"></div>
+            <div class="description">
+                На нашем сайте Вы сможете выбрать себе подходящее место проживания на период обучения в университете. Вы сами можете подобрать себе общежитие и комнату, внутри этого общежития по подходящим Вам параметрам. Чтобы приступить к выбору, Вам необходима учётная запись на нашем сайте.
+            </div>
         </div>
+        <a href="#content" class="header__center__bottom__arrow__link">
+            <img src="../static/img/arrow.png" class="header__center__bottom__arrow__img">
+        </a>
     </div>
-    <a href="#content" class="header__center__bottom__arrow__link">
-        <img src="./static/img/arrow.png" class="header__center__bottom__arrow__img">
-    </a>
-</div>
 {% endblock %}
 
 {% block main %}
-<div class="main__wrapper">
     <a name="content"></a>
-    <div class="main__wrapper__left">
-        <img src="./static/img/obshaga1.png" alt="Общежитие" class="main__wrapper__left__img main__wrapper__left__img_active">
-        <img src="./static/img/obshaga2.png" alt="Общежитие" class="main__wrapper__left__img">
-        <img src="./static/img/obshaga1.png" alt="Общежитие" class="main__wrapper__left__img">
-        <img src="./static/img/obshaga2.png" alt="Общежитие" class="main__wrapper__left__img">
-        <div class="main__wrapper__left__indicatorWrapper">
-            <div class="main__wrapper__left__indicator"></div>
+    <div class="main__wrapper">
+        <div class="slider">
+            <img class="slider__btn slider__btn_left" src="../static/img/sliderArrow.png">
+            <div class="slider__wrapper">
+                <img src="../static/img/obshaga1.png" class="slider__img">
+                <img src="../static/img/obshaga2.png" class="slider__img">
+                <img src="../static/img/obshaga1.png" class="slider__img">
+                <img src="../static/img/obshaga2.png" class="slider__img">
+                <img src="../static/img/obshaga1.png" class="slider__img">
+                <img src="../static/img/obshaga2.png" class="slider__img">
+                <img src="../static/img/obshaga1.png" class="slider__img">
+                <img src="../static/img/obshaga2.png" class="slider__img">
+                <img src="../static/img/obshaga1.png" class="slider__img">
+                <img src="../static/img/obshaga2.png" class="slider__img">
+            </div>
+            <img class="slider__btn slider__btn_right" src="../static/img/sliderArrow.png">
+        </div>
+        <div class="main__wrapper__info">
+            <h1 class="main__wrapper__header">Общежитие №1</h1>
+            <img src="../static/img/obshaga2.png" class="main__wrapper__img">
+            <h2 class="main__wrapper__subheader">Новгородский просп., 34, корп. 2, Архангельск подъезд 1</h2>
+            <h1 class="main__wrapper__title">Краткое описание общежития</h1>
+            <h2 class="main__wrapper__text">
+                Не общежитие, а тараканный притон, жить невозможно, соседи долбят мозг, в общем, лучше сюды не заселяться, заведующая душка.
+            </h2>
+            <h1 class="main__wrapper__header">Список комнат общежития</h1>
+            <div class="list">
+                <img src="../static/img/obshaga1.png" alt="" class="list__img">
+                <div class="list__number">
+                    <div class="list__number__title">Выбери комнату</div>
+                    <div class="list__number__btns">
+                        <div class="list__number__btn">1</div>
+                        <div class="list__number__btn">2</div>
+                        <div class="list__number__btn">3</div>
+                        <div class="list__number__btn">4</div>
+                        <div class="list__number__btn">5</div>
+                        <div class="list__number__btn">6</div>
+                        <div class="list__number__btn">7</div>
+                        <div class="list__number__btn">8</div>
+                        <div class="list__number__btn">9</div>
+                        <div class="list__number__btn">10</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="main__wrapper__right">
-        <h1 class="main__wrapper__right__header">Общежитие №1</h1>
-        <h2 class="main__wrapper__right__subheader">Адрес такой-то такой-то</h2>
-        <p class="main__wrapper__right__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora tenetur dignissimos omnis voluptate enim reiciendis
-            provident maxime consequatur amet? Vero cumque accusamus maxime veritatis, blanditiis ab cum officia commodi,
-            sapiente asperiores hic quas numquam esse at ipsum voluptates ad neque amet autem id aliquam a ducimus eos eius?
-            Sint ea dignissimos, accusamus totam laborum amet nesciunt exercitationem eius. Sapiente aperiam quae suscipit
-            porro ipsum eos praesentium tenetur repellendus ea cum, fugiat quas distinctio veritatis ex eligendi natus quia
-            unde! Similique est dolorem repellat ea beatae nihil qui accusamus nulla dolores, praesentium eveniet consequatur,
-            officiis non provident at necessitatibus sed natus?
-        </p>
-    </div>
-</div>
-{% endblock %}
-
-{% block footer %}
-<div class="footer">
-    <div class="footer__wrapper">
-        Северный (Арктический) федеральный университет имени М.В. Ломоносова
-    </div>
-    <div class="footer__wrapper">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora tenetur dignissimos omnis voluptate enim reiciendis provident maxime consequatur amet?
-    </div>
-</div>
 {% endblock %}

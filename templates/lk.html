@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Личный кабинет{% endblock %}
+{% block main %}
+    <main class="lk">
+        <div class="lk__inputs">
+            <div class="lk__inputs__wrapper">
+                <div class="lk__img">
+                    <label>
+                        <input type="file" class="file lk__input" disabled>
+                    </label>
+               </div>
+            </div>
+            <div class="lk__inputs__wrapper">
+                <input class="lk__input" placeholder="ФИО" type="text" disabled>
+                <input class="lk__input" placeholder="Email" type="text" disabled>
+                <input class="lk__input" placeholder="Пароль" type="password" disabled>
+                <input class="lk__input" placeholder="Подтверждение пароля" type="password" disabled>
+                <button class="lk__btn">Изменить</button>
+            </div>
+        </div>
+        <div class="lk__applications">
+            <div class="lk__application">
+                <div class="lk__application__wrapper">
+                    <div class="lk__application__status">Принято в обработку</div>
+                    <img src="./static/img/close.png" class="lk__application__img">
+                </div>
+                <div class="lk__application__title">Общежитие №3</div>
+                <div class="lk__application__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestias qui id asperiores nihil suscipit deserunt impedit excepturi aperiam soluta.</div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
