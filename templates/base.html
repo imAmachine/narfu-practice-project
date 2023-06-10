@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/mobile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/slider.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/lk.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -16,5 +23,8 @@
     <main>{% block main %}{% endblock %}</main>
     <footer>{% block footer %}{% endblock %}</footer>
 </body>
-<script src="{{ url_for('static', filename='scripts/script.js')}}"></script>
+<script src="{{ url_for('static', filename='scripts/login.js')}}"></script>
+<script src="{{ url_for('static', filename='scripts/selectRoom.js')}}"></script>
+<script src="{{ url_for('static', filename='scripts/slider.js')}}"></script>
+<script src="{{ url_for('static', filename='scripts/lk.js')}}"></script>
 </html>
