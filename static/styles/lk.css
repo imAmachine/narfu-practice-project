@@ -1,0 +1,154 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.lk {
+    width: 100%;
+    background: #0084ff;
+    color: #484848;
+    padding: 40px;
+    flex: 1 0 auto;
+}
+
+.lk__inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.lk__inputs__wrapper {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    gap: 22px;
+    flex-direction: column;
+}
+
+.lk__img {
+    cursor: pointer;
+    max-width: 300px;
+    width: 100%;
+    aspect-ratio: 1;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-image: url(../img/user.png);
+    border: 2px solid #5f5353;
+    filter: invert(1);
+    border-radius: 5px;
+    padding: 5px;
+    background-position: center;
+    display: block;
+}
+
+.lk__img_active {
+    border-color: #000;
+}
+
+.lk__img input[type="file"]{
+    display: none;
+}
+
+.lk__img label {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 300px;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.lk__input {
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    background: none;
+    border: 2px solid #aaa;
+    color: #fff;
+    outline: none;
+    border-radius: 5px;
+}
+
+.lk__input_active {
+    border-color: #fff;
+}
+
+.lk__input::placeholder {
+    color: #aaa;
+}
+
+.lk__input_active::placeholder {
+    color: #fff;
+}
+
+.lk__btn {
+    color: #0084ff;
+    background: #fff;
+    border: none;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.lk__btn:hover {
+    color: #fff;
+    background: #0084ff;
+    border-color: #fff;
+}
+
+.lk__applications {
+    max-width: 622px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin: 0 auto;
+}
+
+.lk__application {
+    padding: 15px;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 0 10px #000;
+}
+
+.lk__application__wrapper {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.lk__application__img {
+    position: relative;
+    background: aqua;
+    filter: invert(1);
+    border-radius: 50%;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    right: 0;
+    cursor: pointer;
+}
+
+.lk__application__status {
+    color: green;
+}
+
+.lk__application__wrapper {
+    margin-bottom: 20px;
+}
+
+.lk__application__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}

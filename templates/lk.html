@@ -1,0 +1,42 @@
+{% extends 'base_lk.html' %}
+{% block title %}ВЫБЕРИ СВОЁ МЕСТО В САФУ{% endblock %}
+{% block main %}
+    <main class="lk">
+        <div class="lk__inputs">
+            <div class="lk__inputs__wrapper">
+                <div class="lk__img">
+                    <label>
+                        <input type="file" class="file lk__input" disabled>
+                    </label>
+               </div>
+            </div>
+            <div class="lk__inputs__wrapper">
+                <input class="lk__input" placeholder="ФИО" type="text" disabled>
+                <input class="lk__input" placeholder="Email" type="text" disabled>
+                <input class="lk__input" placeholder="Пароль" type="password" disabled>
+                <input class="lk__input" placeholder="Подтверждение пароля" type="password" disabled>
+                <button class="lk__btn">Изменить</button>
+            </div>
+        </div>
+        <div class="lk__applications">
+            <div class="lk__application">
+                <div class="lk__application__wrapper">
+                    <div class="lk__application__status">Принято в обработку</div>
+                    <img src="./static/img/close.png" class="lk__application__img">
+                </div>
+                <div class="lk__application__title">Общежитие №3</div>
+                <div class="lk__application__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestias qui id asperiores nihil suscipit deserunt impedit excepturi aperiam soluta.</div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block footer %}
+    <div class="footer">
+        <div class="footer__wrapper">
+            Северный (Арктический) федеральный университет имени М.В. Ломоносова
+        </div>
+        <div class="footer__wrapper">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora tenetur dignissimos omnis voluptate enim reiciendis provident maxime consequatur amet?
+        </div>
+    </div>
+{% endblock %}

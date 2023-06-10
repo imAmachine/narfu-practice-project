@@ -1,0 +1,47 @@
+.slider {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.slider__wrapper {
+    width: 1040px;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    gap: 10px;
+}
+
+.slider__img {
+    width: 200px;
+    position: relative;
+    transition: .5s;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.slider__btn {
+    cursor: pointer;
+    width: 30px;
+    object-fit: contain;
+    height: fit-content;
+    /* filter: invert(1); */
+    cursor: pointer;
+}
+
+.slider__btn_left {
+    transform: rotate(180deg);
+}
+
+.slider__btn_bot {
+    transform: rotate(90deg);
+}
+
+.slider__btn_top {
+    transform: rotate(-90deg);
+}
