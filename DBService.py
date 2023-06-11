@@ -21,3 +21,14 @@ class DBService:
         """
         self.cursor.execute(query)
         return self.cursor.fetchall()
+
+    def exec_call(self, query, params=None):
+        cursor = self.connection.cursor()
+        try:
+            cursor.callproc(query, params)
+            self.connection.commit()
+        except psycopg2.DatabaseError as e:
+            self.connection.rollback()
+            raise e
+        finally:
+            cursor.close()
