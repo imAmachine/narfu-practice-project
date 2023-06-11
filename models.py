@@ -42,15 +42,12 @@ class Userinfo:
 
 
 class Dormitory:
-    def __init__(self, dormitory_id, name, address, photo, description, available_capacity, total_capacity, status):
+    def __init__(self, dormitory_id, name, address, photo, description):
         self.dormitory_id = dormitory_id
         self.name = name
         self.address = address
         self.photo = photo
         self.description = description
-        self.available_capacity = available_capacity
-        self.total_capacity = total_capacity
-        self.status = status
 
     def to_dict(self):
         return {
@@ -58,10 +55,7 @@ class Dormitory:
             'name': self.name,
             'address': self.address,
             'photo': self.photo,
-            'description': self.description,
-            'available_capacity': self.available_capacity,
-            'total_capacity': self.total_capacity,
-            'status': self.status
+            'description': self.description
         }
 
 
@@ -105,10 +99,12 @@ class RoomAssignment:
 
 
 class Room:
-    def __init__(self, room_id, dormitory_id, room_number, status):
+    def __init__(self, room_id, dormitory_id, room_number, occupied, total_places, status):
         self.room_id = room_id
         self.dormitory_id = dormitory_id
         self.room_number = room_number
+        self.occupied = occupied
+        self.total_places = total_places
         self.status = status
 
     def to_dict(self):
@@ -116,5 +112,7 @@ class Room:
             'room_id': self.room_id,
             'dormitory_id': self.dormitory_id,
             'room_number': self.room_number,
+            'occupied': self.occupied,
+            'total_places': self.total_places,
             'status': self.status
         }
