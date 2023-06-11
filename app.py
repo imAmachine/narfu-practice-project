@@ -72,10 +72,10 @@ def registrate_user():
     health_info = user_data.get('health_info')
 
     # Выполнение запроса на регистрацию пользователя
-    query = f"CALL registrateuser('{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{email}', '{phone_number}', '{date_of_birth}', '{address}', '{health_info}')"
+    query = f"registrateuser"
     try:
         db_service = get_db()
-        db_service.exec_call(query)
+        db_service.exec_call(query, (login, password, name, surname, patronymic, email, phone_number, date_of_birth, address, health_info))
         return jsonify({'message': 'User registered successfully'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
