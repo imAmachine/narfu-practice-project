@@ -9,6 +9,9 @@ class DBService:
     def service_init(self, schema):
         self.cursor = self.connection.cursor(schema)
 
+    def close_connection(self):
+        self.connection.connection.close()
+
     def exec_select(self, query):
         """
         Method executing a SELECT query
