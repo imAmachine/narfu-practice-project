@@ -59,7 +59,6 @@ def profile():
 def registrate_user():
     # Получение данных пользователя из запроса
     user_data = request.json
-
     # Извлечение параметров пользователя
     login = user_data.get('login')
     password = user_data.get('password')
@@ -73,10 +72,10 @@ def registrate_user():
     health_info = user_data.get('health_info')
 
     # Выполнение запроса на регистрацию пользователя
-    query = f"CALL RegistrateUser('{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{email}', '{phone_number}', '{date_of_birth}', '{address}', '{health_info}')"
+    query = f"CALL registrateuser('{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{email}', '{phone_number}', '{date_of_birth}', '{address}', '{health_info}')"
     try:
         db_service = get_db()
-        db_service.exec_query(query)
+        db_service.exec_call(query)
         return jsonify({'message': 'User registered successfully'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
