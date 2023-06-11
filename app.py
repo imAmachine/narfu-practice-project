@@ -1,5 +1,5 @@
 import psycopg2
-from flask import Flask, render_template, jsonify, g
+from flask import Flask, render_template, jsonify, g, request
 import jsonworker
 from DBService import DBService
 from models import Application, Dormitory, Application
@@ -36,6 +36,7 @@ def select_sql(query, obj):
         return jsonify({'error': str(e)}), 500
 
 
+
 # Закрытие соединения с базой данных после запроса
 @app.teardown_appcontext
 def close_db(error):
@@ -51,6 +52,34 @@ def index():
 @app.route('/lk')
 def profile():
     return render_template('lk.html')
+
+
+# Регистрация нового пользователя в базе данных
+@app.route('/api/registrate_user', methods=['POST'])
+def registrate_user():
+    # Получение данных пользователя из запроса
+    user_data = request.json
+
+    # Извлечение параметров пользователя
+    login = user_data.get('login')
+    password = user_data.get('password')
+    name = user_data.get('name')
+    surname = user_data.get('surname')
+    patronymic = user_data.get('patronymic')
+    email = user_data.get('email')
+    phone_number = user_data.get('phone_number')
+    date_of_birth = user_data.get('date_of_birth')
+    address = user_data.get('address')
+    health_info = user_data.get('health_info')
+
+    # Выполнение запроса на регистрацию пользователя
+    query = f"CALL RegistrateUser('{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{email}', '{phone_number}', '{date_of_birth}', '{address}', '{health_info}')"
+    try:
+        db_service = get_db()
+        db_service.exec_query(query)
+        return jsonify({'message': 'User registered successfully'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 # Получение заявки по id пользователя
