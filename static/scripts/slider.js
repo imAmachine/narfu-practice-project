@@ -46,4 +46,37 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
   }
   else alert("Ошибка HTTP: " + response.status)
+
+  var form = document.getElementById('myForm');
+
+// Обработчик события отправки формы
+  form.addEventListener('submit', async function(event) {
+    event.preventDefault(); // Предотвращаем обычное поведение отправки формы
+
+    // Создание объекта FormData и добавление данных из формы
+    var formData = new FormData(form);
+    
+    var jsonObject = {};
+    formData.forEach(function(value, key) {
+        jsonObject[key] = value;
+    });
+
+    // Отправка данных на сервер с использованием fetch()
+    await fetch('/api/registrate_user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(jsonObject)
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Обработка ответа от сервера
+      console.log(data);
+    })
+    .catch(error => {
+      // Обработка ошибок
+      console.error(error);
+    });
+  });
 })
