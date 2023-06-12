@@ -2,17 +2,18 @@ import datetime
 import traceback
 
 import psycopg2
-from flask import Flask, render_template, jsonify, g, request, redirect, url_for
+from flask import Flask, render_template, jsonify, g, request, redirect, url_for, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, DateField
 from wtforms.validators import DataRequired, Email, Length
 
 import jsonworker
 from DBService import DBService
-from models import Application, Dormitory, Room
+from models import Application, Dormitory, Room, UserAuth, Userinfo
 
 DATABASE = jsonworker.read_json("connection.json")
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'hui'
 
 
 def get_db():
@@ -49,7 +50,7 @@ def close_db(error):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', regform=RegistrationForm(), logform=LoginForm())
 
 
 @app.route('/lk')
@@ -59,8 +60,8 @@ def profile():
 
 @app.route('/reg')
 def reg():
-    registration_form = RegistrationForm()
-    return render_template('reg.html', form=registration_form)
+
+    return render_template('reg.html', )
 
 
 # Определение класса формы для регистрации пользователя
@@ -77,7 +78,30 @@ class RegistrationForm(FlaskForm):
     health_info = StringField('Health Information', render_kw={"class": "my-css-class"})
 
 
-app.config['SECRET_KEY'] = 'hui'
+# Определение класса формы для регистрации пользователя
+class LoginForm(FlaskForm):
+    login = StringField('Login', validators=[DataRequired()], render_kw={"class": "my-css-class"})
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], render_kw={"class": "my-css-class"})
+
+
+# Маршрут для входа в систему
+@app.route('/api/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        login = form.login.data
+        password = form.password.data
+        try:
+            db_service = get_db()
+            query = f'SELECT * FROM userauth WHERE login={login} and password={password}'
+            user = db_service.exec_select(query)
+            if user:
+                session['user'] = UserAuth(user['user_id'], user['login'], user['password'])
+                return redirect('index.html')
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+    else:
+        return jsonify({'message': 'kakayato huinya'})
 
 
 # Регистрация нового пользователя в базе данных
@@ -104,12 +128,9 @@ def registrate_user():
             db_service.exec_procedure(query)
             return redirect(url_for('reg'))  # Перенаправление на страницу 'reg'
         except Exception as e:
-            traceback_str = traceback.format_exc()
-            print(traceback_str)  # Вывод трассировки ошибки в консоль
             return jsonify({'error': str(e)}), 500
     else:
         return jsonify({'message': 'kakayato huinya'})
-
 
 
 # Получение заявки по id пользователя
