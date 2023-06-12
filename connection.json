@@ -1,4 +1,4 @@
-{ "db": "narfu",
+{ "db": "dormproj",
   "username": "postgres",
   "password": "123",
   "host": "localhost",

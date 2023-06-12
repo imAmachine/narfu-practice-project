@@ -113,6 +113,7 @@ def auth_user():
                 user = User(user_data[0], user_data[1], user_data[2])
                 login_user(user)
                 g.user = user  # Загрузка пользователя в контекст
+                return redirect(url_for('index'))
             else:
                 return jsonify({'message': 'Invalid login credentials'})
         except Exception as e:
@@ -143,6 +144,7 @@ def registrate_user():
         try:
             db_service = get_db()
             db_service.exec_procedure(query)
+            return redirect(url_for('index'))
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
