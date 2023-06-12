@@ -66,16 +66,16 @@ def reg():
 
 # Определение класса формы для регистрации пользователя
 class RegistrationForm(FlaskForm):
-    login = StringField('Login', validators=[DataRequired()], render_kw={"class": "my-css-class"})
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], render_kw={"class": "my-css-class"})
-    name = StringField('Name', validators=[DataRequired()], render_kw={"class": "my-css-class"})
-    surname = StringField('Surname', validators=[DataRequired()], render_kw={"class": "my-css-class"})
-    patronymic = StringField('Patronymic', render_kw={"class": "my-css-class"})
-    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"class": "my-css-class"})
-    phone_number = StringField('Phone Number', validators=[DataRequired()], render_kw={"class": "my-css-class"})
-    date_of_birth = DateField('Date of Birth', validators=[DataRequired()], render_kw={"class": "my-css-class"})
-    address = StringField('Address', validators=[DataRequired()], render_kw={"class": "my-css-class"})
-    health_info = StringField('Health Information', render_kw={"class": "my-css-class"})
+    login = StringField('Login', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Логин"})
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Пароль"})
+    name = StringField('Name', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Фамилия"})
+    surname = StringField('Surname', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Имя"})
+    patronymic = StringField('Patronymic', render_kw={"class": "loginForm__wrapper__input", "placeholder": "Отчетство"})
+    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Email"})
+    phone_number = StringField('Phone Number', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Номер телефона"})
+    date_of_birth = DateField('Date of Birth', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Дата рождения"})
+    address = StringField('Address', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Адрес"},)
+    health_info = StringField('Health Information', render_kw={"class": "loginForm__wrapper__input", "placeholder": "Информация о здоровье"})
 
 
 # Определение класса формы для регистрации пользователя
