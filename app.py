@@ -14,6 +14,7 @@ DATABASE = jsonworker.read_json("connection.json")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hui'  # SECRET_KEY
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 
 def get_db():
