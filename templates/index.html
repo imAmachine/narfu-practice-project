@@ -18,21 +18,48 @@
                     <div class="loginForm__wrapper__btn">Регистрация</div>
                 </div>
             </div>
-            <div class="loginForm__wrapper__registration">
+
+
+            <form method="POST" action="/api/registrate_user" class="loginForm__wrapper__registration">
                 <img class="close_img" src="../static/img/close.png">
                 <div class="loginForm__wrapper__title">Регистрация</div>
+                {{ regform.csrf_token }}
                 <div class="loginForm__wrapper__inputWrapper">
-                    <input type="text" class="loginForm__wrapper__input" placeholder="Логин">
+                    {{ regform.login }}
                 </div>
                 <div class="loginForm__wrapper__inputWrapper">
-                    <input type="password" class="loginForm__wrapper__input" placeholder="Пароль">
+                    {{ regform.password }}
                     <img src="../static/img/eye.png" alt="Показать/скрыть пароль" class="loginForm__wrapper__inputWrapper__eye">
-                </div>               
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    {{ regform.name }}
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    {{ regform.surname }}
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    {{ regform.patronymic }}
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    {{ regform.email }}
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                   {{ regform.phone_number }}
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    {{ regform.date_of_birth }}
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    {{ regform.address }}
+                </div>
+                <div class="loginForm__wrapper__inputWrapper">
+                    {{ regform.health_info }}
+                </div>
                 <div class="button_wrapper">
                     <button type="submit" class="loginForm__wrapper__submit">ЗАРЕГИСТРИРОВАТЬСЯ</button>
                     <div class="loginForm__wrapper__btn">Войти</div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 {% endblock %}
@@ -106,21 +133,8 @@
                     </div>
                 </div>
             </div>
-            <h2 class="room__info"></h1>
+            <h2 class="room__info"></h2>
         </div>
-        <!-- <form id="myForm" action="/api/registrate_user" method="post">
-            <input type="text" name="login" placeholder="Login" value="1">
-            <input type="password" name="password" placeholder="Password" value="2">
-            <input type="text" name="name" placeholder="Name" value="3">
-            <input type="text" name="surname" placeholder="Surname" value="4">
-            <input type="text" name="patronymic" placeholder="Patronymic" value="5">
-            <input type="email" name="email" placeholder="Email" value="dass@mail.ru">
-            <input type="tel" name="phone_number" placeholder="Phone Number" value="3213213">
-            <input type="date" name="date_of_birth" placeholder="Date of Birth" value="2000-03-30">
-            <input type="text" name="address" placeholder="Address" value="dsadasdasds">
-            <input type="text" name="health_info" placeholder="Health Info" value="dsadasdasd">
-            <input type="submit">Register</input>
-        </form> -->
     </div>
 
 {% endblock %}
