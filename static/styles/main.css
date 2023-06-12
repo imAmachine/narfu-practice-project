@@ -49,37 +49,38 @@ main {
     margin-bottom: 30px;
 }
 
-.list {
+.room {
     margin-left: 30px;
     display: flex;
     gap: 60px;
 }
 
-.list__img {
+.room__img {
     width: 50%;
     border-radius: 15px;
-    object-fit: cover;
+    object-fit: scale-down;
+    height: 190px;
 }
 
-.list__number {
+.room__number {
     max-width: 380px;
 }
 
-.list__number__title {
+.room__number__title {
     text-align: center;
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
-.list__number__btns {
+.room__number__btns {
     display: flex;
     flex-wrap: wrap;
     row-gap: 10px;
     column-gap: 20px;
 }
 
-.list__number__btn {
+.room__number__btn {
     width: 60px;
     height: 60px;
     display: flex;
@@ -93,7 +94,14 @@ main {
     transition: .5s;
 }
 
-.list__number__btn_active {
+.room__number__btn_disable {
+    background: red;
+    color: #fff;
+    cursor: default;
+    border-color: red;
+}
+
+.room__number__btn_active {
     background: #484848;
     color: #fff;
 }

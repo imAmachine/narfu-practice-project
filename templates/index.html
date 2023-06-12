@@ -80,34 +80,35 @@
             <img class="slider__btn slider__btn_right" src="../static/img/sliderArrow.png">
         </div>
         <div class="main__wrapper__info">
-            <h1 class="main__wrapper__header">Общежитие №1</h1>
-            <img src="../static/img/obshaga2.png" class="main__wrapper__img">
-            <h2 class="main__wrapper__subheader">Новгородский просп., 34, корп. 2, Архангельск подъезд 1</h2>
-            <h1 class="main__wrapper__title">Краткое описание общежития</h1>
+            <h1 class="main__wrapper__header"></h1>
+            <img src="" class="main__wrapper__img">
+            <h2 class="main__wrapper__subheader"></h2>
+            <h1 class="main__wrapper__title"></h1>
             <h2 class="main__wrapper__text">
-                Не общежитие, а тараканный притон, жить невозможно, соседи долбят мозг, в общем, лучше сюды не заселяться, заведующая душка.
+                
             </h2>
             <h1 class="main__wrapper__header">Список комнат общежития</h1>
-            <div class="list">
-                <img src="../static/img/obshaga1.png" alt="" class="list__img">
-                <div class="list__number">
-                    <div class="list__number__title">Выбери комнату</div>
-                    <div class="list__number__btns">
-                        <div class="list__number__btn">1</div>
-                        <div class="list__number__btn">2</div>
-                        <div class="list__number__btn">3</div>
-                        <div class="list__number__btn">4</div>
-                        <div class="list__number__btn">5</div>
-                        <div class="list__number__btn">6</div>
-                        <div class="list__number__btn">7</div>
-                        <div class="list__number__btn">8</div>
-                        <div class="list__number__btn">9</div>
-                        <div class="list__number__btn">10</div>
+            <div class="room">
+                <img src="../static/img/unknown.png" alt="" class="room__img">
+                <div class="room__number">
+                    <div class="room__number__title">Выбери комнату</div>
+                    <div class="room__number__btns">
+                        <!-- <div class="room__number__btn">1</div>
+                        <div class="room__number__btn">2</div>
+                        <div class="room__number__btn">3</div>
+                        <div class="room__number__btn">4</div>
+                        <div class="room__number__btn">5</div>
+                        <div class="room__number__btn">6</div>
+                        <div class="room__number__btn">7</div>
+                        <div class="room__number__btn">8</div>
+                        <div class="room__number__btn">9</div>
+                        <div class="room__number__btn">10</div> -->
                     </div>
                 </div>
             </div>
+            <h2 class="room__info"></h1>
         </div>
-        <form id="myForm" action="/api/registrate_user" method="post">
+        <!-- <form id="myForm" action="/api/registrate_user" method="post">
             <input type="text" name="login" placeholder="Login" value="1">
             <input type="password" name="password" placeholder="Password" value="2">
             <input type="text" name="name" placeholder="Name" value="3">
@@ -119,7 +120,7 @@
             <input type="text" name="address" placeholder="Address" value="dsadasdasds">
             <input type="text" name="health_info" placeholder="Health Info" value="dsadasdasd">
             <input type="submit">Register</input>
-        </form>
+        </form> -->
     </div>
 {% endblock %}
 {% block scripts %}
