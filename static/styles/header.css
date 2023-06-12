@@ -35,7 +35,7 @@ header {
     cursor: pointer;
 }
 
-.buttonAuth {
+.buttonAuth, .buttonAuth1 {
     color: white;
     cursor: pointer;
     display: flex;

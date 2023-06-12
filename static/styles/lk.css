@@ -4,12 +4,15 @@ body {
     height: 100vh;
 }
 
+main {
+    flex: 1 0 auto;
+}
+
 .lk {
     width: 100%;
     background: #0084ff;
     color: #484848;
     padding: 40px;
-    flex: 1 0 auto;
 }
 
 .lk__inputs {
@@ -17,7 +20,6 @@ body {
     justify-content: center;
     align-items: center;
     gap: 22px;
-    flex-wrap: wrap;
     margin-bottom: 22px;
 }
 
@@ -64,7 +66,9 @@ body {
     cursor: pointer;
     transition: .5s;
     width: 100%;
-    margin: 0 auto;
+    max-width: 622px;
+    margin: 22px auto;
+    display: block;
 }
 
 .lk__btn:hover {

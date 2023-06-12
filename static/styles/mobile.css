@@ -116,6 +116,14 @@
     .main__wrapper__text {
         text-align: justify;
     }
+
+    .lk__inputs__wrapper {
+        max-width: none;
+    }
+
+    .lk__inputs {
+        flex-wrap: wrap;
+    }
 }
 
 @media (max-width: 550px) {

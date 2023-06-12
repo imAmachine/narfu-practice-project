@@ -68,13 +68,16 @@
     <div class="header__center">
         <div class="header__center__menu">
             <img src="../static/img/logo.png" class="logo">
-            <div class="buttonAuth">
-                <span class="buttonAuth__text">войти</span>
-                <img src="../static/img/auth.png" alt="" class="buttonAuth__img">
-            </div>
-            <!-- <div class="buttonAuth" style="padding: 7px 30px 10px 30px;">
-                <a class="buttonAuth__text" href="/lk">личный кабинет</a>
-            </div> -->
+            {% if current_user.is_authenticated %}
+                <div class="buttonAuth1" style="padding: 7px 30px 10px 30px;">
+                    <a class="buttonAuth__text" href="/lk">личный кабинет</a>
+                </div>
+            {% else %}
+                <div class="buttonAuth">
+                    <span class="buttonAuth__text">войти</span>
+                    <img src="../static/img/auth.png" alt="" class="buttonAuth__img">
+                </div>
+            {% endif %}
         </div>
         <div class="header__center__bottom">
             <div class="header__center__title">ВЫБЕРИ СВОЕ МЕСТО В САФУ!</div>
