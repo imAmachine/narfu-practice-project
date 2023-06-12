@@ -65,16 +65,16 @@ def reg():
 
 # Определение класса формы для регистрации пользователя
 class RegistrationForm(FlaskForm):
-    login = StringField('Login', validators=[DataRequired()], default='login')
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], default='password123')
-    name = StringField('Name', validators=[DataRequired()], default='name')
-    surname = StringField('Surname', validators=[DataRequired()], default='surname')
-    patronymic = StringField('Patronymic', default='patronymic')
-    email = StringField('Email', validators=[DataRequired(), Email()], default='vmdev@mail.ru')
-    phone_number = StringField('Phone Number', validators=[DataRequired()], default='234534534543543')
-    date_of_birth = DateField('Date of Birth', validators=[DataRequired()], default=datetime.datetime.now())
-    address = StringField('Address', validators=[DataRequired()], default='address')
-    health_info = StringField('Health Information', default='health')
+    login = StringField('Login', validators=[DataRequired()], render_kw={"class": "my-css-class"})
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], render_kw={"class": "my-css-class"})
+    name = StringField('Name', validators=[DataRequired()], render_kw={"class": "my-css-class"})
+    surname = StringField('Surname', validators=[DataRequired()], render_kw={"class": "my-css-class"})
+    patronymic = StringField('Patronymic', render_kw={"class": "my-css-class"})
+    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"class": "my-css-class"})
+    phone_number = StringField('Phone Number', validators=[DataRequired()], render_kw={"class": "my-css-class"})
+    date_of_birth = DateField('Date of Birth', validators=[DataRequired()], render_kw={"class": "my-css-class"})
+    address = StringField('Address', validators=[DataRequired()], render_kw={"class": "my-css-class"})
+    health_info = StringField('Health Information', render_kw={"class": "my-css-class"})
 
 
 app.config['SECRET_KEY'] = 'hui'
