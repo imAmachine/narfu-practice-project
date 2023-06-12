@@ -14,7 +14,6 @@ DATABASE = jsonworker.read_json("connection.json")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hui'  # SECRET_KEY
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
 
 
 def get_db():
@@ -62,7 +61,7 @@ def close_db(error):
 
 @app.route('/')
 def index():
-    print(current_user.password)
+    print(current_user)
     return render_template('index.html', regform=RegistrationForm(), logform=LoginForm())
 
 
@@ -70,11 +69,6 @@ def index():
 @login_required
 def profile():
     return render_template('lk.html')
-
-
-@app.route('/reg')
-def reg():
-    return render_template('reg.html', logform=LoginForm())
 
 
 # Определение класса формы для регистрации пользователя
@@ -93,8 +87,8 @@ class RegistrationForm(FlaskForm):
 
 # Определение класса формы для регистрации пользователя
 class LoginForm(FlaskForm):
-    login = StringField('Login', validators=[DataRequired()], render_kw={"class": "my-css-class"})
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], render_kw={"class": "my-css-class"})
+    login = StringField('Login', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Логин"})
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Пароль"})
 
 
 @app.route('/api/logout')
@@ -105,7 +99,7 @@ def logout():
 
 
 # Маршрут для входа в систему
-@app.route('/api/login', methods=['POST'])
+@app.route('/api/login_user', methods=['POST'])
 def auth_user():
     form = LoginForm(request.form)
     if form.validate_on_submit():
