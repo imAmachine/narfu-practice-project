@@ -2,7 +2,7 @@ import psycopg2
 from flask import Flask, render_template, jsonify, g, request
 import jsonworker
 from DBService import DBService
-from models import Application, Dormitory, Application
+from models import Application, Dormitory, Room
 
 DATABASE = jsonworker.read_json("connection.json")
 app = Flask(__name__)
@@ -25,13 +25,11 @@ def select_sql(query, obj):
     try:
         rows = db_service.exec_select(query)
         if rows:
-            # Создание объектов Application из результатов запроса
-            application_list = [obj(*row) for row in rows]
-            # Преобразование объектов Application в словари и возврат в формате JSON
-            application_dicts = [app.to_dict() for app in application_list]
-            return jsonify(application_dicts)
+            objects_list = [obj(*row) for row in rows]
+            objects_dicts = [obj.to_dict() for obj in objects_list]
+            return jsonify(objects_dicts)
         else:
-            return jsonify({'message': 'No application found for the user'})
+            return jsonify({'message': 'Not found'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -72,10 +70,10 @@ def registrate_user():
     health_info = user_data.get('health_info')
 
     # Выполнение запроса на регистрацию пользователя
-    query = f"CALL registrateuser('{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{email}', '{phone_number}', '{date_of_birth}', '{address}', '{health_info}')"
+    query = f"registrateuser"
     try:
         db_service = get_db()
-        db_service.exec_call(query)
+        db_service.exec_call(query, (login, password, name, surname, patronymic, email, phone_number, date_of_birth, address, health_info))
         return jsonify({'message': 'User registered successfully'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -96,13 +94,12 @@ def get_all_dormitories():
     query = "SELECT * FROM dormitories"
     return select_sql(query, Dormitory)
 
-
 # Получение всех комнат по id общежития
 @app.route('/api/rooms/<int:dormitory_id>', methods=['GET'])
 def get_rooms_by_dormitory_id(dormitory_id):
     # Выполнение запроса для получения всех комнат по id общежития
     query = f"SELECT * FROM rooms WHERE dormitory_id={dormitory_id}"
-    return select_sql(query, Dormitory)
+    return select_sql(query, Room)
 
 
 if __name__ == "__main__":
