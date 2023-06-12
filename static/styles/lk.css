@@ -29,40 +29,6 @@ body {
     flex-direction: column;
 }
 
-.lk__img {
-    cursor: pointer;
-    max-width: 300px;
-    width: 100%;
-    aspect-ratio: 1;
-    background-repeat: no-repeat;
-    background-size: 90%;
-    background-image: url(../img/user.png);
-    border: 2px solid #5f5353;
-    filter: invert(1);
-    border-radius: 5px;
-    padding: 5px;
-    background-position: center;
-    display: block;
-}
-
-.lk__img_active {
-    border-color: #000;
-}
-
-.lk__img input[type="file"]{
-    display: none;
-}
-
-.lk__img label {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    max-width: 300px;
-    width: 100%;
-    aspect-ratio: 1;
-}
-
 .lk__input {
     border: none;
     padding: 10px 20px;
