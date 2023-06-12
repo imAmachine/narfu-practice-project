@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Registration</h1>
+<form method="POST" action="/api/registrate_user">
+<h1>Registration</h1>
+<form method="POST" action="/api/registrate_user">
+    {{ form.csrf_token }}
+    <div>
+        {{ form.login.label }} {{ form.login }}
+    </div>
+    <div>
+        {{ form.password.label }} {{ form.password }}
+    </div>
+    <div>
+        {{ form.name.label }} {{ form.name }}
+    </div>
+    <div>
+        {{ form.surname.label }} {{ form.surname }}
+    </div>
+    <div>
+        {{ form.patronymic.label }} {{ form.patronymic }}
+    </div>
+    <div>
+        {{ form.email.label }} {{ form.email }}
+    </div>
+    <div>
+        {{ form.phone_number.label }} {{ form.phone_number }}
+    </div>
+    <div>
+        {{ form.date_of_birth.label }} {{ form.date_of_birth }}
+    </div>
+    <div>
+        {{ form.address.label }} {{ form.address }}
+    </div>
+    <div>
+        {{ form.health_info.label }} {{ form.health_info }}
+    </div>
+    <div>
+        <input type="submit" value="Register">
+    </div>
+</form>
+
+</body>
+</html>

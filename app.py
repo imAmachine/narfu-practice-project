@@ -1,11 +1,19 @@
+import datetime
+import traceback
+
 import psycopg2
-from flask import Flask, render_template, jsonify, g, request
+from flask import Flask, render_template, jsonify, g, request, redirect, url_for, session
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, DateField
+from wtforms.validators import DataRequired, Email, Length
+
 import jsonworker
 from DBService import DBService
-from models import Application, Dormitory, Room
+from models import Application, Dormitory, Room, UserAuth, Userinfo
 
 DATABASE = jsonworker.read_json("connection.json")
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'hui'
 
 
 def get_db():
@@ -16,7 +24,6 @@ def get_db():
                                       host=DATABASE['host'],
                                       port=DATABASE['port'])
         g.db = DBService(connection)
-        g.db.service_init(schema='public')
     return g.db
 
 
@@ -34,7 +41,6 @@ def select_sql(query, obj):
         return jsonify({'error': str(e)}), 500
 
 
-
 # Закрытие соединения с базой данных после запроса
 @app.teardown_appcontext
 def close_db(error):
@@ -44,7 +50,7 @@ def close_db(error):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', regform=RegistrationForm(), logform=LoginForm())
 
 
 @app.route('/lk')
@@ -52,31 +58,78 @@ def profile():
     return render_template('lk.html')
 
 
+@app.route('/reg')
+def reg():
+    return render_template('reg.html', )
+
+
+# Определение класса формы для регистрации пользователя
+class RegistrationForm(FlaskForm):
+    login = StringField('Login', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Логин"})
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Пароль"})
+    name = StringField('Name', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Фамилия"})
+    surname = StringField('Surname', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Имя"})
+    patronymic = StringField('Patronymic', render_kw={"class": "loginForm__wrapper__input", "placeholder": "Отчетство"})
+    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Email"})
+    phone_number = StringField('Phone Number', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Номер телефона"})
+    date_of_birth = DateField('Date of Birth', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Дата рождения"})
+    address = StringField('Address', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Адрес"},)
+    health_info = StringField('Health Information', render_kw={"class": "loginForm__wrapper__input", "placeholder": "Информация о здоровье"})
+
+
+# Определение класса формы для регистрации пользователя
+class LoginForm(FlaskForm):
+    login = StringField('Login', validators=[DataRequired()], render_kw={"class": "my-css-class"})
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], render_kw={"class": "my-css-class"})
+
+
+# Маршрут для входа в систему
+@app.route('/api/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        login = form.login.data
+        password = form.password.data
+        try:
+            db_service = get_db()
+            query = f'SELECT * FROM userauth WHERE login={login} and password={password}'
+            user = db_service.exec_select(query)
+            if user:
+                session['user'] = UserAuth(user['user_id'], user['login'], user['password'])
+                return redirect('index.html')
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+    else:
+        return jsonify({'message': 'kakayato huinya'})
+
+
 # Регистрация нового пользователя в базе данных
 @app.route('/api/registrate_user', methods=['POST'])
 def registrate_user():
-    # Получение данных пользователя из запроса
-    user_data = request.json
-    # Извлечение параметров пользователя
-    login = user_data.get('login')
-    password = user_data.get('password')
-    name = user_data.get('name')
-    surname = user_data.get('surname')
-    patronymic = user_data.get('patronymic')
-    email = user_data.get('email')
-    phone_number = user_data.get('phone_number')
-    date_of_birth = user_data.get('date_of_birth')
-    address = user_data.get('address')
-    health_info = user_data.get('health_info')
+    form = RegistrationForm(request.form)
 
-    # Выполнение запроса на регистрацию пользователя
-    query = f"registrateuser"
-    try:
-        db_service = get_db()
-        db_service.exec_call(query, (login, password, name, surname, patronymic, email, phone_number, date_of_birth, address, health_info))
-        return jsonify({'message': 'User registered successfully'})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    if form.validate_on_submit():
+        # Извлечение данных из формы
+        login = form.login.data
+        password = form.password.data
+        name = form.name.data
+        surname = form.surname.data
+        patronymic = form.patronymic.data
+        email = form.email.data
+        phone_number = form.phone_number.data
+        date_of_birth = form.date_of_birth.data.__str__()
+        address = form.address.data
+        health_info = form.health_info.data
+        # Выполнение запроса на регистрацию пользователя
+        query = f"CALL registrateuser('{login}','{password}','{name}','{surname}','{patronymic}','{email}','{phone_number}','{date_of_birth}','{address}','{health_info}');"
+        try:
+            db_service = get_db()
+            db_service.exec_procedure(query)
+            return redirect(url_for('reg'))  # Перенаправление на страницу 'reg'
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+    else:
+        return jsonify({'message': 'kakayato huinya'})
 
 
 # Получение заявки по id пользователя
