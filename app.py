@@ -60,7 +60,6 @@ def profile():
 
 @app.route('/reg')
 def reg():
-
     return render_template('reg.html', )
 
 
