@@ -3,23 +3,22 @@
 {% block body %}
     <div class="loginForm loginForm_hide">
         <div class="loginForm__wrapper">
-            <div class="loginForm__wrapper__login">
+            <form action="/api/login_user" method="POST" class="loginForm__wrapper__login">
+                {{ logform.csrf_token }}
                 <img class="close_img" src="../static/img/close.png">
-                <div class="loginForm__wrapper__title">Вход в систему</div>
+                <div class="loginForm__wrapper__title">Войти</div>
                 <div class="loginForm__wrapper__inputWrapper">
-                    <input type="text" class="loginForm__wrapper__input" placeholder="Логин">
+                    {{ logform.login }}
                 </div>
                 <div class="loginForm__wrapper__inputWrapper">
-                    <input type="password" class="loginForm__wrapper__input" placeholder="Пароль">
+                    {{ logform.password }}
                     <img src="../static/img/eye.png" alt="Показать/скрыть пароль" class="loginForm__wrapper__inputWrapper__eye">
-                </div>                
+                </div>
                 <div class="button_wrapper">
-                    <button type="submit" class="loginForm__wrapper__submit">ВОЙТИ</button>
+                    <input type="submit" class="loginForm__wrapper__submit" value="Войти">
                     <div class="loginForm__wrapper__btn">Регистрация</div>
                 </div>
-            </div>
-
-
+            </form>
             <form method="POST" action="/api/registrate_user" class="loginForm__wrapper__registration">
                 <img class="close_img" src="../static/img/close.png">
                 <div class="loginForm__wrapper__title">Регистрация</div>
