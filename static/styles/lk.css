@@ -77,6 +77,20 @@ main {
     border-color: #fff;
 }
 
+.lk__btn_exit {
+    text-align: center;
+    text-decoration: none;
+    background-color: red;
+    border-color: red;
+    color: #fff;
+}
+
+.lk__btn_exit:hover {
+    background-color: #fff;
+    color: red;
+    border-color: red;
+}
+
 .lk__applications {
     max-width: 622px;
     width: 100%;
