@@ -77,4 +77,4 @@ class UserInfoDataLk(FlaskForm):
     phone_number = StringField('Login', validators=[DataRequired(), ], render_kw={"class": "lk__input", "placeholder": "Номер телефона"})
     date_of_birth = StringField('Login', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Дата рождения"})
     address = StringField('Login', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Ваш адрес прописки"})
-    health_info = StringField('Login', validators=[], render_kw={"class": "lk__input", "placeholder": "Информация о здоровье", "value": cur})
+    health_info = StringField('Login', validators=[], render_kw={"class": "lk__input", "placeholder": "Информация о здоровье"})
