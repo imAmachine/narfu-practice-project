@@ -2,11 +2,16 @@ let img = document.querySelector('.main__wrapper__img')
 let address = document.querySelector('.main__wrapper__subheader')
 let text = document.querySelector('.main__wrapper__text')
 
+var object = {
+  dormitory_id: null,
+  room_id: null
+}
+
 document.addEventListener('DOMContentLoaded', async function() {
   let sliderWrapper = document.getElementsByClassName("slider__wrapper")[0]
   let response = await fetch('/api/dormitories')
   if (response.ok) {
-    let jsonDormitory = await response.json()
+    var jsonDormitory = await response.json()
     jsonDormitory.forEach(el => {
       let img = document.createElement('img')
       img.className = 'slider__img'
@@ -56,9 +61,11 @@ document.addEventListener('DOMContentLoaded', async function() {
       address.innerHTML = jsonDormitory[id]['address']
       text.innerHTML = jsonDormitory[id]['description']
 
+      object.dormitory_id = jsonDormitory[id]['dormitory_id']
+
       let response = await fetch(`/api/rooms/${header.id}`)
       if (response.ok) {
-        let jsonRooms = await response.json()
+        var jsonRooms = await response.json()
         if (jsonRooms.length > 0) {
           jsonRooms.forEach(el => {
             let btn = document.createElement('button')
@@ -69,14 +76,15 @@ document.addEventListener('DOMContentLoaded', async function() {
             else {
               btn.className = 'room__number__btn room__number__btn_mozhno'
               btn.addEventListener('click', () => clickRoom(btn))
-              // document.getElementsByClassName('room__number__btn_mozhno')[0].classList.add('room__number__btn_active')
             }
             btn.innerHTML = `№ ${el['room_number']}<br> ${el.occupied} / ${el['total_places']}`
             btns.appendChild(btn)
+            object.room_id = jsonRooms[id]['dormitory_id']
           })
         }
         document.querySelector('.room__img').src = jsonRooms[id]['photo']
       }
+      document.getElementsByClassName('room__number__btn_mozhno')[0].classList.add('room__number__btn_active')
     }
     getInfo(0)
   }
