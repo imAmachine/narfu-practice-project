@@ -62,7 +62,6 @@ def close_db(error):
 
 @app.route('/')
 def index():
-    print(current_user)
     return render_template('index.html', regform=RegistrationForm(), logform=LoginForm())
 
 
@@ -123,6 +122,13 @@ def auth_user():
         return jsonify({'message': 'Invalid form data'})
 
 
+@app.route('/api/user_info/<int:user_id>', methods=['GET'])
+def user_info_by_id(user_id):
+    # Выполнение запроса для получения заявки по id пользователя
+    query = f"SELECT * FROM userinfo WHERE user_id={user_id}"
+    return select_sql(query, Userinfo)
+
+
 # Регистрация нового пользователя в базе данных
 @app.route('/api/registrate_user', methods=['POST'])
 def registrate_user():
@@ -166,6 +172,7 @@ def get_all_dormitories():
     # Выполнение запроса для получения всех общежитий
     query = "SELECT * FROM dormitories"
     return select_sql(query, Dormitory)
+
 
 # Получение всех комнат по id общежития
 @app.route('/api/rooms/<int:dormitory_id>', methods=['GET'])
