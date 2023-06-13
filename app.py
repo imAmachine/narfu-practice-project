@@ -133,7 +133,6 @@ def add_application():
 
 
 @app.route('/api/change_user_data/')
-@login_required
 def update_user_data():
     form = UserInfoDataLk(request.form)
     if form.validate_on_submit():
@@ -154,7 +153,7 @@ def update_user_data():
         try:
             db_service = get_db()
             db_service.exec_query(query)
-            load_user(current_user.id)
+            g.user = load_user(current_user.id)
             return redirect(url_for('lk'))
         except Exception as e:
             return jsonify({'error': str(e)}), 500
