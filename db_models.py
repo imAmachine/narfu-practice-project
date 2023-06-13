@@ -70,11 +70,11 @@ class LoginForm(FlaskForm):
 
 
 class UserInfoDataLk(FlaskForm):
-    name = StringField('name', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Имя"})
-    surname = StringField('surname', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Фамилия"})
-    patronymic = StringField('patronymic', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Отчество"})
-    email = StringField('email', validators=[DataRequired(), Email()], render_kw={"class": "lk__input", "placeholder": "Email"})
-    phone_number = StringField('phone_number', validators=[DataRequired(), ], render_kw={"class": "lk__input", "placeholder": "Номер телефона"})
-    date_of_birth = DateField('date_of_birth', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Дата рождения"})
-    address = StringField('address', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Ваш адрес прописки"})
-    health_info = StringField('health_info', validators=[], render_kw={"class": "lk__input", "placeholder": "Информация о здоровье"})
+    name = StringField('Имя', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Имя"})
+    surname = StringField('Фамилия', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Фамилия"})
+    patronymic = StringField('Отчество', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Отчество"})
+    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"class": "lk__input", "placeholder": "Email"})
+    phone_number = StringField('Номер телефона', validators=[DataRequired(), ], render_kw={"class": "lk__input", "placeholder": "Номер телефона"})
+    date_of_birth = DateField('Дата рождения', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Дата рождения"})
+    address = StringField('Адрес прописки', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Ваш адрес прописки"})
+    health_info = StringField('Информация по здоровью', validators=[], render_kw={"class": "lk__input", "placeholder": "Информация о здоровье"})
