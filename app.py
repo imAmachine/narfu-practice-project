@@ -5,7 +5,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 import jsonworker
 from DBService import DBService
 from db_models import User, RegistrationForm, LoginForm, UserInfoDataLk
-from models import Application, Dormitory, Room, Userinfo
+from models import Application, Dormitory, Room, Userinfo, ApplicationView
 
 DATABASE = jsonworker.read_json("connection.json")
 app = Flask(__name__)
@@ -41,7 +41,7 @@ def load_user(user_id):
     db_service = get_db()
     query = f"SELECT userauth.user_id, userauth.login, userauth.\"password\", userinfo.\"name\", " \
             f"userinfo.surname, userinfo.patronymic, userinfo.email, userinfo.phone_number, " \
-            f"userinfo.date_of_birth, userinfo.address, userinfo.health_info, userinfo.\"role\" " \
+            f"userinfo.date_of_birth, userinfo.address, userinfo.health_info, userinfo.permissions " \
             f"FROM userauth, userinfo WHERE userauth.user_id={user_id} and userinfo.user_id={user_id}"
     user_data = db_service.exec_select(query)
     if user_data:
@@ -58,7 +58,7 @@ def load_user(user_id):
             date_of_birth=row['date_of_birth'],
             address=row['address'],
             health_info=row['health_info'],
-            role=row['role']
+            permissions=row['permissions']
         )
         return user
     return None
@@ -72,21 +72,26 @@ def index():
 @app.route('/lk')
 @login_required
 def profile():
-    # db_service = get_db()
-    # query = ''
-    # if current_user.role == 'user':
-    #     query = f"SELECT * FROM applications_view WHERE user_id={current_user.id}"
-    # elif current_user.role == 'admin':
-    #     query = f"SELECT * FROM applications_view"
-    # user_data = db_service.exec_select(query)
-    return render_template('lk.html', user_form=UserInfoDataLk())
+    try:
+        db_service = get_db()
+        query = ''
+        print(current_user.permissions)
+        if current_user.permissions == 'user':
+            query = f"SELECT * FROM applications_view WHERE user_id={current_user.id}"
+        elif current_user.permissions == 'admin':
+            query = f"SELECT * FROM applications_view"
+        applications = db_service.exec_select(query)
+        rows = rows_to_dict(applications, ApplicationView)
+    except Exception as e:
+        return jsonify({"error": str(e)}, 500)
+    return render_template('lk.html', user_form=UserInfoDataLk(), applications=rows)
 
 
 @app.route('/api/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect('/index')
+    return redirect('/')
 
 
 # Маршрут для входа в систему
@@ -108,21 +113,20 @@ def auth_user():
                     # Закрытие курсора
                     db_service.connection.commit()
                     db_service.cursor.close()
-            return redirect('/index')
+            return redirect('/')
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
         return jsonify({'message': 'Invalid form data'})
 
 
-@app.route('/api/add_application', methods=['GET'])
+@app.route('/api/add_application', methods=['POST'])
 @login_required
 def add_application():
     dormitory_id = request.args.get('dormitory_id')
     room_id = request.args.get('room_id')
-    user_id = request.args.get('user_id')
 
-    query = f"INSERT INTO applications (dormitory_id, room_id, user_id) VALUES ({dormitory_id}, {room_id}, {user_id})"
+    query = f"INSERT INTO applications (dormitory_id, room_id, user_id) VALUES ({dormitory_id}, {room_id}, {current_user.id})"
     try:
         db_service = get_db()
         db_service.exec_query(query)
@@ -183,7 +187,7 @@ def registrate_user():
         try:
             db_service = get_db()
             db_service.exec_query(query)
-            return redirect('/index')
+            return redirect('/')
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:

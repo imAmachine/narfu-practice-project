@@ -59,14 +59,35 @@ class Dormitory:
         }
 
 
+class ApplicationView:
+    def __init__(self, application_id, user_id, dormitory_name, room_number, application_date, username, status):
+        self.application_id = application_id
+        self.user_id = user_id
+        self.dormitory_name = dormitory_name
+        self.room_number = room_number
+        self.application_date = application_date
+        self.username = username
+        self.status = status
+
+    def to_dict(self):
+        return {
+            'application_id': self.application_id,
+            'user_id': self.user_id,
+            'dormitory_name': self.dormitory_name,
+            'room_number': self.room_number,
+            'application_date': self.application_date,
+            'username': self.username,
+            'status': self.status
+        }
+
+
 class Application:
-    def __init__(self, application_id, user_id, dormitory_id, application_date=datetime.datetime.now(),
-                 application_status='In work'):
+    def __init__(self, application_id, user_id, dormitory_id, application_date, status):
         self.application_id = application_id
         self.user_id = user_id
         self.dormitory_id = dormitory_id
         self.application_date = application_date
-        self.application_status = application_status
+        self.status = status
 
     def to_dict(self):
         return {
@@ -99,10 +120,11 @@ class RoomAssignment:
 
 
 class Room:
-    def __init__(self, room_id, dormitory_id, room_number, occupied, total_places, status):
+    def __init__(self, room_id, dormitory_id, room_number, photo, occupied, total_places, status):
         self.room_id = room_id
         self.dormitory_id = dormitory_id
         self.room_number = room_number
+        self.photo = photo
         self.occupied = occupied
         self.total_places = total_places
         self.status = status
@@ -114,5 +136,6 @@ class Room:
             'room_number': self.room_number,
             'occupied': self.occupied,
             'total_places': self.total_places,
+            'photo': self.photo,
             'status': self.status
         }

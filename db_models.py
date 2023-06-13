@@ -6,8 +6,8 @@ from wtforms.validators import DataRequired, Email, Length
 
 class User(UserMixin):
     def __init__(self, user_id, login, password, name, surname, patronymic, 
-                 email, phone_number, date_of_birth, address, health_info, role):
-        self.role = role
+                 email, phone_number, date_of_birth, address, health_info, permissions):
+        self.permissions = permissions
         self.health_info = health_info
         self.address = address
         self.date_of_birth = date_of_birth
@@ -45,7 +45,7 @@ class User(UserMixin):
             'date_of_birth': self.date_of_birth,
             'address': self.address,
             'health_info': self.health_info,
-            'role': self.role
+            'permissions': self.permissions
         }
 
 
