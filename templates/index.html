@@ -112,7 +112,7 @@
             </h2>
             <h1 class="main__wrapper__header">Список комнат общежития</h1>
             <div class="room">
-                <img src="../static/img/unknown.png" alt="" class="room__img">
+                <img class="room__img">
                 <div class="room__number">
                     <div class="room__number__title">Выбери комнату</div>
                     <div class="room__number__btns">
@@ -120,7 +120,7 @@
                     </div>
                     {% if current_user.is_authenticated %}
                         <!-- <form class=""> -->
-                            <input type="submit" class="room__number__btnSelect" value="Выбрать">
+                            <input type="submit" class="room__number__btnSelect" value="Создать заявку">
                         <!-- </form> -->
                     {% else %}
                         <div class="room__number__text">Сначала авторизуйтесь</div>

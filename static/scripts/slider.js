@@ -62,20 +62,20 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (jsonRooms.length > 0) {
           jsonRooms.forEach(el => {
             let btn = document.createElement('button')
-            if (!el.status) {
+            if (el['status'] == true) {
               btn.className = 'room__number__btn room__number__btn_disable'
               btn.disabled = true
             }
             else {
               btn.className = 'room__number__btn room__number__btn_mozhno'
               btn.addEventListener('click', () => clickRoom(btn))
+              // document.getElementsByClassName('room__number__btn_mozhno')[0].classList.add('room__number__btn_active')
             }
-            btn.innerHTML = `№ ${el['room_number']}<br> ${el['occupied']} / ${el['total_places']}`
+            btn.innerHTML = `№ ${el['room_number']}<br> ${el.occupied} / ${el['total_places']}`
             btns.appendChild(btn)
           })
-          document.getElementsByClassName('room__number__btn_mozhno')[0].classList.add('room__number__btn_active')
         }
-        smallImg.src = jsonRooms[id]['photo']
+        document.querySelector('.room__img').src = jsonRooms[id]['photo']
       }
     }
     getInfo(0)

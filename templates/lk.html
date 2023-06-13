@@ -43,14 +43,25 @@
         </div>
         <input type="submit" class="lk__btn" value="Обновить">
         <div class="lk__applications">
-            <div class="lk__application">
-                <div class="lk__application__wrapper">
-                    <div class="lk__application__status">Принято в обработку</div>
-                    <img src="./static/img/close.png" class="lk__application__img">
+            {% for application in applications %}
+                <div class="lk__application">
+                    <div class="lk__application__wrapper">
+                        {% if application.status %}
+                            <div class="lk__application__status">Обработано</div>
+                        {% else %}
+                            <div class="lk__application__status_red">В обработке</div>
+                        {% endif %}
+                        <img src="./static/img/close.png" class="lk__application__img">
+                    </div>
+                    <div class="lk__application__title">{{ application.username }}</div>
+                    <div class="lk__application__title">Общежитие №3</div>
+                    <div class="lk__application__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestias qui id asperiores nihil suscipit deserunt impedit excepturi aperiam soluta.</div>
                 </div>
-                <div class="lk__application__title">Общежитие №3</div>
-                <div class="lk__application__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestias qui id asperiores nihil suscipit deserunt impedit excepturi aperiam soluta.</div>
-            </div>
+            {% endfor %}
+
+
+
+
         </div>
         <a href="/api/logout" class="lk__btn lk__btn_exit">Выйти</a>
     </form>

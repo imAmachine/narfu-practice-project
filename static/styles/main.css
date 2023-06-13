@@ -59,7 +59,6 @@ main {
 .room__img {
     width: 50%;
     border-radius: 15px;
-    object-fit: scale-down;
     height: 190px;
 }
 
