@@ -86,7 +86,7 @@ def profile():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect('/index')
 
 
 # Маршрут для входа в систему
@@ -103,20 +103,19 @@ def auth_user():
             if user_id:
                 user = load_user(user_id[0][0])
                 if user:
-                    login_user(user)
                     g.user = user  # Загрузка пользователя в контекст
-
+                    login_user(user)
                     # Закрытие курсора
                     db_service.connection.commit()
                     db_service.cursor.close()
-            return redirect(url_for('index'))
+            return redirect('/index')
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
         return jsonify({'message': 'Invalid form data'})
 
 
-@app.route('/api/add_application/')
+@app.route('/api/add_application', methods=['GET'])
 @login_required
 def add_application():
     dormitory_id = request.args.get('dormitory_id')
@@ -132,18 +131,19 @@ def add_application():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/api/change_user_data/')
+@app.route('/api/change_user_data', methods=['POST'])
+@login_required
 def update_user_data():
     form = UserInfoDataLk(request.form)
     if form.validate_on_submit():
-        name = request.args.get('name')
-        surname = request.args.get('surname')
-        patronymic = request.args.get('patronymic')
-        email = request.args.get('email')
-        phone_number = request.args.get('phone_number')
-        date_of_birth = request.args.get('date_of_birth')
-        address = request.args.get('address')
-        health_info = request.args.get('health_info')
+        name = form.data.get('name')
+        surname = form.data.get('surname')
+        patronymic = form.data.get('patronymic')
+        email = form.data.get('email')
+        phone_number = form.data.get('phone_number')
+        date_of_birth = form.data.get('date_of_birth')
+        address = form.data.get('address')
+        health_info = form.data.get('health_info')
 
         query = f"UPDATE userinfo SET name='{name}', " \
                 f"surname='{surname}', patronymic='{patronymic}', " \
@@ -154,7 +154,7 @@ def update_user_data():
             db_service = get_db()
             db_service.exec_query(query)
             g.user = load_user(current_user.id)
-            return redirect(url_for('lk'))
+            return redirect('/lk')
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
@@ -183,7 +183,7 @@ def registrate_user():
         try:
             db_service = get_db()
             db_service.exec_query(query)
-            return redirect(url_for('index'))
+            return redirect('/index')
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
