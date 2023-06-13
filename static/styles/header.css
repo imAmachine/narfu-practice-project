@@ -45,7 +45,7 @@ header {
     border-radius: 10px;
 }
 
-.buttonAuth:hover {
+.buttonAuth:hover, .buttonAuth1:hover {
     border-color: #fff;
 }
 

@@ -62,21 +62,21 @@ document.addEventListener('DOMContentLoaded', async function() {
           if (json.length > 0) {
             json.forEach(el => {
               let btn = document.createElement('button')
-              if (el['occupied'] == el['total_places']) {
+              if (!el.status) {
                 btn.className = 'room__number__btn room__number__btn_disable'
                 btn.disabled = true
               }
               else {
-                btn.className = 'room__number__btn'
+                btn.className = 'room__number__btn room__number__btn_mozhno'
                 btn.addEventListener('click', () => clickRoom(btn))
               }
               btn.innerHTML = `№ ${el['room_number']}<br> ${el['occupied']} / ${el['total_places']}`
               btns.appendChild(btn)
             })
+            document.getElementsByClassName('room__number__btn_mozhno')[0].classList.add('room__number__btn_active')
           }
         }
       // smallImg.src = json[id]['photo']
-      // нужна фотка комнаты и описание комнаты
     }
 
     getInfo(0)

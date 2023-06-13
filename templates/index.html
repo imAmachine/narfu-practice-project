@@ -98,16 +98,7 @@
         <div class="slider">
             <img class="slider__btn slider__btn_left" src="../static/img/sliderArrow.png">
             <div class="slider__wrapper">
-                <!-- <img src="../static/img/obshaga1.png" class="slider__img">
-                <img src="../static/img/obshaga2.png" class="slider__img">
-                <img src="../static/img/obshaga1.png" class="slider__img">
-                <img src="../static/img/obshaga2.png" class="slider__img">
-                <img src="../static/img/obshaga1.png" class="slider__img">
-                <img src="../static/img/obshaga2.png" class="slider__img">
-                <img src="../static/img/obshaga1.png" class="slider__img">
-                <img src="../static/img/obshaga2.png" class="slider__img">
-                <img src="../static/img/obshaga1.png" class="slider__img">
-                <img src="../static/img/obshaga2.png" class="slider__img"> -->
+
             </div>
             <img class="slider__btn slider__btn_right" src="../static/img/sliderArrow.png">
         </div>
@@ -125,17 +116,15 @@
                 <div class="room__number">
                     <div class="room__number__title">Выбери комнату</div>
                     <div class="room__number__btns">
-                        <!-- <div class="room__number__btn">1</div>
-                        <div class="room__number__btn">2</div>
-                        <div class="room__number__btn">3</div>
-                        <div class="room__number__btn">4</div>
-                        <div class="room__number__btn">5</div>
-                        <div class="room__number__btn">6</div>
-                        <div class="room__number__btn">7</div>
-                        <div class="room__number__btn">8</div>
-                        <div class="room__number__btn">9</div>
-                        <div class="room__number__btn">10</div> -->
+
                     </div>
+                    {% if current_user.is_authenticated %}
+                        <!-- <form class=""> -->
+                            <input type="submit" class="room__number__btnSelect" value="Выбрать">
+                        <!-- </form> -->
+                    {% else %}
+                        <div class="room__number__text">Сначала авторизуйтесь</div>
+                    {% endif %}
                 </div>
             </div>
             <h2 class="room__info"></h2>
