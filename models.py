@@ -60,7 +60,7 @@ class Dormitory:
 
 
 class ApplicationView:
-    def __init__(self, application_id, user_id, dormitory_name, room_number, application_date, username, status):
+    def __init__(self, application_id, user_id, dormitory_name, room_number, username, application_date, status):
         self.application_id = application_id
         self.user_id = user_id
         self.dormitory_name = dormitory_name
