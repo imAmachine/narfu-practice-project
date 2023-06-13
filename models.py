@@ -120,7 +120,7 @@ class RoomAssignment:
 
 
 class Room:
-    def __init__(self, room_id, dormitory_id, room_number, photo, occupied, total_places, status):
+    def __init__(self, room_id, dormitory_id, room_number, total_places, photo, occupied, status):
         self.room_id = room_id
         self.dormitory_id = dormitory_id
         self.room_number = room_number
