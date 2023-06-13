@@ -36,22 +36,10 @@ main {
     padding: 10px 20px;
     width: 100%;
     background: none;
-    border: 2px solid #aaa;
+    border: 2px solid #fff;
     color: #fff;
     outline: none;
     border-radius: 5px;
-}
-
-.lk__input_active {
-    border-color: #fff;
-}
-
-.lk__input::placeholder {
-    color: #aaa;
-}
-
-.lk__input_active::placeholder {
-    color: #fff;
 }
 
 .lk__btn {

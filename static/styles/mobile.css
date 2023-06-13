@@ -117,7 +117,7 @@
         text-align: justify;
     }
 
-    .lk__inputs__wrapper {
+    .lk__inputs__wrapper, .lk__btn, .lk__applications {
         max-width: none;
     }
 

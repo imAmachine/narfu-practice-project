@@ -1,22 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}Личный кабинет{% endblock %}
 {% block main %}
-    <main class="lk">
+    <form action="/api/change_user_data/" method="POST" class="lk">
+        {{ user_form.csrf_token }}
         <div class="lk__inputs">
             <div class="lk__inputs__wrapper">
-                <input class="lk__input" placeholder="Фамилия" type="text" disabled>
-                <input class="lk__input" placeholder="Имя" type="text" disabled>
-                <input class="lk__input" placeholder="Отчество" type="text" disabled>
-                <input class="lk__input" placeholder="Email" type="text" disabled>
+                {{ user_form.surname(value=current_user.surname) }}
+                {{ user_form.name(value=current_user.name) }}
+                {{ user_form.patronymic(value=current_user.patronymic) }}
+                {{ user_form.email(value=current_user.email) }}
             </div>
             <div class="lk__inputs__wrapper">
-                <input class="lk__input" placeholder="Номер телефона" type="text" disabled>
-                <input class="lk__input" type="date" disabled>
-                <input class="lk__input" placeholder="Адрес" type="text" disabled>
-                <input class="lk__input" placeholder="Инормация о здоровье" type="text" disabled>
+                {{ user_form.phone_number(value=current_user.phone_number) }}
+                {{ user_form.date_of_birth(value=current_user.date_of_birth) }}
+                {{ user_form.address(value=current_user.address) }}
+                {{ user_form.health_info(value=current_user.health_info) }}
             </div>
         </div>
-        <button class="lk__btn">Изменить</button>
+        <input type="submit" class="lk__btn" value="Обновить">
         <div class="lk__applications">
             <div class="lk__application">
                 <div class="lk__application__wrapper">
@@ -28,7 +29,7 @@
             </div>
         </div>
         <a href="/api/logout" class="lk__btn lk__btn_exit">Выйти</a>
-    </main>
+    </form>
 {% endblock %}
 {% block scripts %}
     <script src="{{ url_for('static', filename='scripts/lk.js')}}"></script>
