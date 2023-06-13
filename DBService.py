@@ -9,7 +9,7 @@ class DBService:
     def close_connection(self):
         self.connection.connection.close()
 
-    def exec_procedure(self, query):
+    def exec_query(self, query):
         """
         Method executing a SELECT query
 
