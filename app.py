@@ -72,6 +72,13 @@ def index():
 @app.route('/lk')
 @login_required
 def profile():
+    # db_service = get_db()
+    # query = ''
+    # if current_user.role == 'user':
+    #     query = f"SELECT * FROM applications_view WHERE user_id={current_user.id}"
+    # elif current_user.role == 'admin':
+    #     query = f"SELECT * FROM applications_view"
+    # user_data = db_service.exec_select(query)
     return render_template('lk.html', user_form=UserInfoDataLk())
 
 
@@ -116,7 +123,7 @@ def auth_user():
 
 @app.route('/api/add_application/')
 @login_required
-def api_endpoint():
+def add_application():
     dormitory_id = request.args.get('dormitory_id')
     room_id = request.args.get('room_id')
     user_id = request.args.get('user_id')
@@ -152,7 +159,8 @@ def update_user_data():
         try:
             db_service = get_db()
             db_service.exec_query(query)
-            return jsonify({'message': 'UserInfo successfully updated'}), 200
+            load_user(current_user.id)
+            return redirect(url_for('lk'))
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
