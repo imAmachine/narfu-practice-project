@@ -31,6 +31,17 @@ main {
     flex-direction: column;
 }
 
+.lk__inputs__wrapper__block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lk__inputs__wrapper label {
+    color: #fff;
+    font-size: 14px;
+}
+
 .lk__input {
     border: none;
     padding: 10px 20px;

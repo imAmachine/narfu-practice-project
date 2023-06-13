@@ -1,20 +1,44 @@
 {% extends 'base.html' %}
 {% block title %}Личный кабинет{% endblock %}
 {% block main %}
-    <form action="/api/change_user_data/" method="POST" class="lk">
+    <form action="/api/change_user_data" method="POST" class="lk">
         {{ user_form.csrf_token }}
         <div class="lk__inputs">
             <div class="lk__inputs__wrapper">
-                {{ user_form.surname(value=current_user.surname) }}
-                {{ user_form.name(value=current_user.name) }}
-                {{ user_form.patronymic(value=current_user.patronymic) }}
-                {{ user_form.email(value=current_user.email) }}
+                <div class="lk__inputs__wrapper__block">
+                    {{ user_form.surname.label }}
+                    {{ user_form.surname(value=current_user.surname) }}
+                </div>
+                <div class="lk__inputs__wrapper__block">
+                    {{ user_form.name.label }}
+                    {{ user_form.name(value=current_user.name) }}
+                </div>
+                <div class="lk__inputs__wrapper__block">
+                    {{ user_form.patronymic.label }}
+                    {{ user_form.patronymic(value=current_user.patronymic) }}
+                </div>
+                <div class="lk__inputs__wrapper__block">
+                    {{ user_form.email.label }}
+                    {{ user_form.email(value=current_user.email) }}
+                </div>
             </div>
             <div class="lk__inputs__wrapper">
-                {{ user_form.phone_number(value=current_user.phone_number) }}
-                {{ user_form.date_of_birth(value=current_user.date_of_birth) }}
-                {{ user_form.address(value=current_user.address) }}
-                {{ user_form.health_info(value=current_user.health_info) }}
+                <div class="lk__inputs__wrapper__block">
+                    {{ user_form.phone_number.label }}
+                    {{ user_form.phone_number(value=current_user.phone_number) }}
+                </div>
+                <div class="lk__inputs__wrapper__block">
+                    {{ user_form.date_of_birth.label }}
+                    {{ user_form.date_of_birth(value=current_user.date_of_birth) }}
+                </div>
+                <div class="lk__inputs__wrapper__block">
+                    {{ user_form.address.label }}
+                    {{ user_form.address(value=current_user.address) }}
+                </div>
+                <div class="lk__inputs__wrapper__block">
+                    {{ user_form.health_info.label }}
+                    {{ user_form.health_info(value=current_user.health_info) }}
+                </div>
             </div>
         </div>
         <input type="submit" class="lk__btn" value="Обновить">
@@ -30,7 +54,4 @@
         </div>
         <a href="/api/logout" class="lk__btn lk__btn_exit">Выйти</a>
     </form>
-{% endblock %}
-{% block scripts %}
-    <script src="{{ url_for('static', filename='scripts/lk.js')}}"></script>
 {% endblock %}
