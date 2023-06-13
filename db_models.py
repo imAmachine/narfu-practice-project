@@ -70,11 +70,11 @@ class LoginForm(FlaskForm):
 
 
 class UserInfoDataLk(FlaskForm):
-    name = StringField('Login', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Имя"})
-    surname = StringField('Login', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Фамилия"})
-    patronymic = StringField('Login', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Отчество"})
-    email = StringField('Login', validators=[DataRequired(), Email()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Email"})
-    phone_number = StringField('Login', validators=[DataRequired(), ], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Номер телефона"})
-    date_of_birth = StringField('Login', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Дата рождения"})
-    address = StringField('Login', validators=[DataRequired()], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Ваш адрес прописки"})
-    health_info = StringField('Login', validators=[], render_kw={"class": "loginForm__wrapper__input", "placeholder": "Информация о здоровье"})
+    name = StringField('Login', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Имя"})
+    surname = StringField('Login', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Фамилия"})
+    patronymic = StringField('Login', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Отчество"})
+    email = StringField('Login', validators=[DataRequired(), Email()], render_kw={"class": "lk__input", "placeholder": "Email"})
+    phone_number = StringField('Login', validators=[DataRequired(), ], render_kw={"class": "lk__input", "placeholder": "Номер телефона"})
+    date_of_birth = StringField('Login', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Дата рождения"})
+    address = StringField('Login', validators=[DataRequired()], render_kw={"class": "lk__input", "placeholder": "Ваш адрес прописки"})
+    health_info = StringField('Login', validators=[], render_kw={"class": "lk__input", "placeholder": "Информация о здоровье"})

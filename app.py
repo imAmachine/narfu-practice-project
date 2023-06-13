@@ -109,12 +109,7 @@ def auth_user():
                     # Закрытие курсора
                     db_service.connection.commit()
                     db_service.cursor.close()
-
-                    return jsonify({'message': 'Success'})
-                else:
-                    return jsonify({'message': 'User not found'}), 404
-            else:
-                return jsonify({'message': 'User is not defined'})
+            return redirect(url_for('index'))
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
