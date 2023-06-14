@@ -209,6 +209,18 @@ def get_application_by_user_id(user_id):
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/api/change_application_status/<int:application_id>/<bool:status>', methods=['POST'])
+def get_application_by_user_id(application_id, status):
+    db_service = connect_db()
+    try:
+        # Выполнение запроса для получения заявки по id пользователя
+        query = f"UPDATE applications SET status={status} WHERE application_id={application_id}"
+        db_service.exec_query(query)
+        return redirect('/lk')
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/api/delete_application/<int:application_id>', methods=['POST'])
 def get_application_by_user_id(application_id):
     db_service = connect_db()
