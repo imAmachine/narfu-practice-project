@@ -59,7 +59,6 @@
                         {% if current_user.permissions == "admin" %}
                             <div class="lk__application__wrapper__asignment">
                                 <form action="/api/delete_assignments/{{ assignment.assignment_id }}" method="POST">
-                                <!-- <form action="{{ url_for('/api/delete_assignments', assignment_id=assignment.assignment_id) }}" method="POST"> -->
                                     <button type="submit" class="lk__application__title__submit">
                                         <img src="./static/img/close.png" class="lk__application__img lk__application__img_asignment">
                                     </button>
