@@ -46,26 +46,45 @@
             </div>
         </div>
         <input type="submit" class="lk__btn" value="Обновить">
-        <div class="lk__applications">
-            {% if not applications %}
-                <div class="lk__applications__message">Активных заявок нет</div>
-            {% else %}
-                {% for application in applications %}
-                    <div class="lk__application">
-                        <div class="lk__application__wrapper">
-                            {% if application.status %}
-                                <div class="lk__application__status">Обработано</div>
-                            {% else %}
-                                <div class="lk__application__status_red">В обработке</div>
-                            {% endif %}
-                            <img src="./static/img/close.png" class="lk__application__img">
-                        </div>
-                        <div class="lk__application__title">{{ application.username }}</div>
-                        <div class="lk__application__title">Общежитие №3</div>
-                        <div class="lk__application__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestias qui id asperiores nihil suscipit deserunt impedit excepturi aperiam soluta.</div>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
     </form>
+    <h1>Информация по заселению в общежитии</h1>
+    <div class="lk__applications">
+        {% if not assignments %}
+            <div class="lk__applications__message">Вы ещё не заселены</div>
+        {% else %}
+            {% for assignment in assignments %}
+                <div class="lk__application">
+                    <div class="lk__application__wrapper">
+                        {{ assignment.user_name }}
+                        {{ assignment.dormitory_name }}
+                        {{ assignment.room_number }}
+                        {{ assignment.check_in_date }}
+                        {{ assignment.check_out_date }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <h1>Заявки</h1>>
+    <div class="lk__applications">
+        {% if not applications %}
+            <div class="lk__applications__message">Активных заявок нет</div>
+        {% else %}
+            {% for application in applications %}
+                <div class="lk__application">
+                    <div class="lk__application__wrapper">
+                        {% if application.status %}
+                            <div class="lk__application__status">Обработано</div>
+                        {% else %}
+                            <div class="lk__application__status_red">В обработке</div>
+                        {% endif %}
+                        <img src="./static/img/close.png" class="lk__application__img">
+                    </div>
+                    <div class="lk__application__title">{{ application.username }}</div>
+                    <div class="lk__application__title">Общежитие №3</div>
+                    <div class="lk__application__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestias qui id asperiores nihil suscipit deserunt impedit excepturi aperiam soluta.</div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}

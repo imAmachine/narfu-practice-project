@@ -5,7 +5,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 import jsonworker
 from DBService import DBService
 from flask_models import User, RegistrationForm, LoginForm, UserInfoDataLk
-from models import Application, Dormitory, Room, Userinfo, ApplicationView
+from models import Application, Dormitory, Room, RoomAssignmentView, ApplicationView
 
 DATABASE = jsonworker.read_json("connection.json")
 app = Flask(__name__)
@@ -81,16 +81,30 @@ def get_applications():
         query = f"SELECT * FROM applications_view WHERE user_id={current_user.id}"
     elif current_user.permissions == 'admin':
         query = f"SELECT * FROM applications_view"
-    return db_service.exec_select(query)
+    return rows_to_dict(db_service.exec_select(query), ApplicationView)
+
+
+def get_roomassignments():
+    db_service = connect_db()
+    query = ''
+    if current_user.permissions == 'user':
+        query = f"SELECT * FROM assignments_view WHERE user_id={current_user.id}"
+    elif current_user.permissions == 'admin':
+        query = f"SELECT * FROM assignments_view"
+    return rows_to_dict(db_service.exec_select(query), RoomAssignmentView)
+
 
 @app.route('/lk')
 @login_required
 def profile():
     try:
-        applications = rows_to_dict(get_applications(), ApplicationView)
+        applications = get_applications()
+        room_assignments = get_roomassignments()
     except Exception as e:
         return jsonify({"error": str(e)}, 500)
-    return render_template('lk.html', user_form=UserInfoDataLk(), applications=applications, )
+    return render_template('lk.html', user_form=UserInfoDataLk(),
+                           applications=applications,
+                           assignments=room_assignments)
 
 
 @app.route('/api/logout')
@@ -217,6 +231,18 @@ def change_application_status(application_id, status):
     try:
         # Выполнение запроса для получения заявки по id пользователя
         query = f"UPDATE applications SET status={status} WHERE application_id={application_id}"
+        db_service.exec_query(query)
+        return redirect('/lk')
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/delete_assignments/<int:assignment_id>', methods=['POST'])
+def delete_assignments_row(assignment_id):
+    db_service = connect_db()
+    try:
+        # Выполнение запроса для получения заявки по id пользователя
+        query = f"DELETE FROM roomassignments WHERE assignment_id = {assignment_id}"
         db_service.exec_query(query)
         return redirect('/lk')
     except Exception as e:

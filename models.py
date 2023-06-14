@@ -99,6 +99,28 @@ class Application:
         }
 
 
+class RoomAssignmentView:
+    def __init__(self, assignment_id, user_id, dormitory_name, room_number, user_name, check_in_date, check_out_date):
+        self.assignment_id = assignment_id
+        self.user_id = user_id
+        self.dormitory_name = dormitory_name
+        self.room_number = room_number
+        self.check_in_date = check_in_date
+        self.check_out_date = check_out_date
+        self.user_name = user_name
+
+    def to_dict(self):
+        return {
+            'assignment_id': self.assignment_id,
+            'user_id': self.user_id,
+            'dormitory_name': self.dormitory_name,
+            'room_number': self.room_number,
+            'check_in_date': self.check_in_date,
+            'check_out_date': self.check_out_date,
+            'user_name': self.user_name,
+        }
+
+
 class RoomAssignment:
     def __init__(self, assignment_id, user_id, dormitory_id, room_number, check_in_date, check_out_date):
         self.assignment_id = assignment_id
