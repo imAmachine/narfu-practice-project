@@ -213,6 +213,7 @@ def registrate_user():
 
 # Получение заявки по id пользователя
 @app.route('/api/applications/<int:user_id>', methods=['GET'])
+@login_required
 def get_application_by_user_id(user_id):
     db_service = connect_db()
     try:
@@ -226,6 +227,7 @@ def get_application_by_user_id(user_id):
 
 
 @app.route('/api/change_application_status/<int:application_id>/<int:status>', methods=['POST'])
+@login_required
 def change_application_status(application_id, status):
     db_service = connect_db()
     try:
@@ -238,6 +240,7 @@ def change_application_status(application_id, status):
 
 
 @app.route('/api/delete_assignments/<int:assignment_id>', methods=['POST'])
+@login_required
 def delete_assignments_row(assignment_id):
     db_service = connect_db()
     try:
@@ -250,6 +253,7 @@ def delete_assignments_row(assignment_id):
 
 
 @app.route('/api/delete_application/<int:application_id>', methods=['POST'])
+@login_required
 def delete_application_row(application_id):
     db_service = connect_db()
     try:

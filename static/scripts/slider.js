@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', async function() {
   }
 
   // Добавление обработчика событий на нажатие кнопки общежития в слайдере
-  let btns_rooms = document.querySelector('.room__number__btns');
-  let dormitoryImages = document.querySelectorAll('.slider__img');
-  let room_img = document.querySelector('.room__img');
+  const btns_rooms = document.querySelector('.room__number__btns');
+  const dormitoryImages = document.querySelectorAll('.slider__img');
+  const room_img = document.querySelector('.room__img');
   dormitoryImages.forEach(function(image) {
     image.addEventListener('click', async function() {
       btns_rooms.innerHTML = ''; // Очистка блока с кнопками комнат
@@ -183,5 +183,14 @@ document.addEventListener('DOMContentLoaded', async function() {
       });
     });
   }
-});
 
+  // Создание объекта события MouseEvent
+  const clickEvent = new MouseEvent('click', {
+    bubbles: true, // указываем, что событие должно всплывать
+    cancelable: true, // указываем, что событие может быть отменено
+    view: window // указываем объект Window в качестве "представления" события
+  });
+
+  // Вызов события click для элемента
+  dormitoryImages[0].dispatchEvent(clickEvent);
+});
