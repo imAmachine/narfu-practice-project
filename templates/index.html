@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+
 {% block title %}ВЫБЕРИ СВОЁ МЕСТО В САФУ{% endblock %}
+
 {% block body %}
     <div class="loginForm loginForm_hide">
         <div class="loginForm__wrapper">
@@ -96,32 +98,32 @@
     <a name="content"></a>
     <div class="main__wrapper">
         <div class="slider">
-            <img class="slider__btn slider__btn_left" src="../static/img/sliderArrow.png">
+            <img class="slider__btn slider__btn_left" src="{{ url_for('static', filename='img/sliderArrow.png') }}">
             <div class="slider__wrapper">
-
+                {% for dormitory in dormitories %}
+                    <img class="slider__img" src="{{ dormitory.photo }}" id="{{ dormitory.dormitory_id }}" data-object="{{ dormitory }}">
+                {% endfor %}
             </div>
-            <img class="slider__btn slider__btn_right" src="../static/img/sliderArrow.png">
+            <img class="slider__btn slider__btn_right" src="{{ url_for('static', filename='img/sliderArrow.png') }}">
         </div>
         <div class="main__wrapper__info">
             <h1 class="main__wrapper__header"></h1>
             <img src="" class="main__wrapper__img">
             <h2 class="main__wrapper__subheader"></h2>
             <h1 class="main__wrapper__title"></h1>
-            <h2 class="main__wrapper__text">
-                
-            </h2>
+            <h2 class="main__wrapper__text"></h2>
             <h1 class="main__wrapper__header">Список комнат общежития</h1>
             <div class="room">
                 <img class="room__img">
                 <div class="room__number">
                     <div class="room__number__title">Выбери комнату</div>
                     <div class="room__number__btns">
-
+                        {% for room in rooms %}
+                            <button class="room__number__btn" value="{{ room.room_id }}">{{ room.room_number }}</button>
+                        {% endfor %}
                     </div>
                     {% if current_user.is_authenticated %}
-                        <!-- <form class=""> -->
-                            <input type="submit" class="room__number__btnSelect" value="Создать заявку">
-                        <!-- </form> -->
+                        <input type="submit" class="room__number__btnSelect" value="Создать заявку">
                     {% else %}
                         <div class="room__number__text">Сначала авторизуйтесь</div>
                     {% endif %}
@@ -130,8 +132,8 @@
             <h2 class="room__info"></h2>
         </div>
     </div>
-
 {% endblock %}
+
 {% block scripts %}
     <script src="{{ url_for('static', filename='scripts/login.js')}}"></script>
     <script src="{{ url_for('static', filename='scripts/selectRoom.js')}}"></script>

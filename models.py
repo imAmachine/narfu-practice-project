@@ -95,7 +95,7 @@ class Application:
             'user_id': self.user_id,
             'dormitory_id': self.dormitory_id,
             'application_date': self.application_date,
-            'application_status': self.application_status
+            'application_status': self.status
         }
 
 

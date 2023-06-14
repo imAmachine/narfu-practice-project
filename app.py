@@ -4,27 +4,24 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 
 import jsonworker
 from DBService import DBService
-from db_models import User, RegistrationForm, LoginForm, UserInfoDataLk
+from flask_models import User, RegistrationForm, LoginForm, UserInfoDataLk
 from models import Application, Dormitory, Room, Userinfo, ApplicationView
 
 DATABASE = jsonworker.read_json("connection.json")
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'hui'  # SECRET_KEY
+app.config['SECRET_KEY'] = '*_KTkMh&nbry^>!85s$>coTuN$=]Q9'
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 
 def connect_db():
+    """Method for getting new database connection"""
     connection = psycopg2.connect(dbname=DATABASE['db'],
                                   user=DATABASE['username'],
                                   password=DATABASE['password'],
                                   host=DATABASE['host'],
                                   port=DATABASE['port'])
     return DBService(connection)
-
-
-def get_db():
-    return connect_db()  # Возвращение соединения с базой данных
 
 
 def rows_to_dict(rows, obj):
@@ -38,7 +35,7 @@ def rows_to_dict(rows, obj):
 
 @login_manager.user_loader
 def load_user(user_id):
-    db_service = get_db()
+    db_service = connect_db()
     query = f"SELECT userauth.user_id, userauth.login, userauth.\"password\", userinfo.\"name\", " \
             f"userinfo.surname, userinfo.patronymic, userinfo.email, userinfo.phone_number, " \
             f"userinfo.date_of_birth, userinfo.address, userinfo.health_info, userinfo.permissions " \
@@ -66,16 +63,24 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    return render_template('index.html', regform=RegistrationForm(), logform=LoginForm())
+    db_service = connect_db()
+    try:
+        # Выполнение запроса для получения всех общежитий
+        query = "SELECT * FROM dormitories"
+        rows = db_service.exec_select(query)
+        dorms = rows_to_dict(rows, Dormitory)
+        return render_template('index.html', regform=RegistrationForm(), logform=LoginForm(), dormitories=dorms)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 
 @app.route('/lk')
 @login_required
 def profile():
     try:
-        db_service = get_db()
+        db_service = connect_db()
         query = ''
-        print(current_user.permissions)
         if current_user.permissions == 'user':
             query = f"SELECT * FROM applications_view WHERE user_id={current_user.id}"
         elif current_user.permissions == 'admin':
@@ -102,7 +107,7 @@ def auth_user():
         login = form.login.data
         password = form.password.data
         try:
-            db_service = get_db()
+            db_service = connect_db()
             query = f"SELECT user_id FROM userauth WHERE login='{login}' AND password='{password}'"
             user_id = db_service.exec_select(query)
             if user_id:
@@ -120,15 +125,12 @@ def auth_user():
         return jsonify({'message': 'Invalid form data'})
 
 
-@app.route('/api/add_application', methods=['POST'])
+@app.route('/api/add_application/<int:dormitory_id>/<int:room_id>', methods=['POST'])
 @login_required
-def add_application():
-    dormitory_id = request.args.get('dormitory_id')
-    room_id = request.args.get('room_id')
-
-    query = f"INSERT INTO applications (dormitory_id, room_id, user_id) VALUES ({dormitory_id}, {room_id}, {current_user.id})"
+def add_application(dormitory_id, room_id):
     try:
-        db_service = get_db()
+        query = f"INSERT INTO applications (dormitory_id, room_id, user_id) VALUES ({dormitory_id}, {room_id}, {current_user.id})"
+        db_service = connect_db()
         db_service.exec_query(query)
         return jsonify({'message': 'Application successfully added'}), 200
     except Exception as e:
@@ -155,7 +157,7 @@ def update_user_data():
                 f"date_of_birth='{date_of_birth}', address='{address}', " \
                 f"health_info='{health_info}' WHERE user_id = {current_user.id}"
         try:
-            db_service = get_db()
+            db_service = connect_db()
             db_service.exec_query(query)
             g.user = load_user(current_user.id)
             return redirect('/lk')
@@ -185,7 +187,7 @@ def registrate_user():
         # Выполнение запроса на регистрацию пользователя
         query = f"CALL registrateuser('{login}','{password}','{name}','{surname}','{patronymic}','{email}','{phone_number}','{date_of_birth}','{address}','{health_info}');"
         try:
-            db_service = get_db()
+            db_service = connect_db()
             db_service.exec_query(query)
             return redirect('/')
         except Exception as e:
@@ -197,7 +199,7 @@ def registrate_user():
 # Получение заявки по id пользователя
 @app.route('/api/applications/<int:user_id>', methods=['GET'])
 def get_application_by_user_id(user_id):
-    db_service = get_db()
+    db_service = connect_db()
     try:
         # Выполнение запроса для получения заявки по id пользователя
         query = f"SELECT * FROM applications WHERE user_id={user_id}"
@@ -208,24 +210,10 @@ def get_application_by_user_id(user_id):
         return jsonify({'error': str(e)}), 500
 
 
-# Получение всех общежитий
-@app.route('/api/dormitories', methods=['GET'])
-def get_all_dormitories():
-    db_service = get_db()
-    try:
-        # Выполнение запроса для получения всех общежитий
-        query = "SELECT * FROM dormitories"
-        rows = db_service.exec_select(query)
-        dict_of_rows = rows_to_dict(rows, Dormitory)
-        return jsonify(dict_of_rows)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
 # Получение всех комнат по id общежития
 @app.route('/api/rooms/<int:dormitory_id>', methods=['GET'])
 def get_rooms_by_dormitory_id(dormitory_id):
-    db_service = get_db()
+    db_service = connect_db()
     try:
         # Выполнение запроса для получения всех комнат по id общежития
         query = f"SELECT * FROM rooms WHERE dormitory_id={dormitory_id}"
