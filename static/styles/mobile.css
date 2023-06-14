@@ -85,6 +85,10 @@
     .slider__wrapper {
         width: 620px;
     }
+
+    .lk__parent {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 800px) {

@@ -115,13 +115,11 @@ main {
     color: red;
 }
 
-.lk__applications {
-    max-width: 622px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    margin: 0 auto;
+.lk__applications__header {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #fff;
 }
 
 .lk__applications__message {
@@ -130,29 +128,68 @@ main {
     margin-top: 20px;
 }
 
-.lk__application {
+.lk__application, .lk__application__wrapper__InfoBlock {
     padding: 15px;
     border-radius: 5px;
     background: #fff;
     box-shadow: 0 0 10px #000;
+    max-width: 622px;
+    width: 100%;
+    height: -webkit-fill-available;
+}
+
+.lk__application:nth-child(odd), .lk__application__wrapper__InfoBlock:nth-child(odd) {
+    background: #eee;
 }
 
 .lk__application__wrapper {
     display: flex;
     justify-content: space-between;
     position: relative;
+    margin-bottom: 20px;
+}
+
+.lk__application__wrapper__InfoBlock {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    position: relative;
+}
+
+.lk__application__wrapper__info {
+    display: flex;
+    gap: 10px;
+}
+
+.lk__application__wrapper__asignment {
+    margin: 0;
+    justify-content: end;
+    position: absolute;
+    right: 15px;
+}
+
+.lk__btns {
+    display: flex;
+    gap: 10px;
+}
+
+.lk__application__img, .lk__application__img_ok {
+    position: relative;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 
 .lk__application__img {
-    position: relative;
+    right: 0;
+    padding: 5px;
     background: aqua;
     filter: invert(1);
-    border-radius: 50%;
-    padding: 5px;
-    width: 20px;
-    height: 20px;
-    right: 0;
-    cursor: pointer;
+}
+
+.lk__application__img_asignment {
+    
 }
 
 .lk__application__status {
@@ -163,12 +200,30 @@ main {
     color: red;
 }
 
-.lk__application__wrapper {
-    margin-bottom: 20px;
-}
-
 .lk__application__title {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
+}
+
+.lk__application__title__submit {
+    background: transparent;
+    border: none;
+}
+
+.lk__parent {
+    display: grid;
+    gap: 22px;
+    max-width: 1306px;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto 40px;
+    padding: 0px 20px;
+}
+
+.lk_left, .lk_right {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
 }
