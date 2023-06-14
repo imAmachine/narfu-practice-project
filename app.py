@@ -211,7 +211,7 @@ def get_application_by_user_id(user_id):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/api/change_application_status/<int:application_id>/<boolean:status>', methods=['POST'])
+@app.route('/api/change_application_status/<int:application_id>/<int:status>', methods=['POST'])
 def get_application_by_user_id(application_id, status):
     db_service = connect_db()
     try:
