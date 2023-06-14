@@ -15,6 +15,15 @@ main {
     padding: 40px;
 }
 
+.lk__back {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 620px;
+    width: 100%;
+    margin: 0 auto;
+}
+
 .lk__inputs {
     display: flex;
     justify-content: center;
@@ -53,21 +62,24 @@ main {
     border-radius: 5px;
 }
 
+.lk__btn, .lk__btn_exit {
+    transition: .5s;
+    cursor: pointer;
+    display: block;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    width: 100%;
+}
+
 .lk__btn {
     color: #0084ff;
     background: #fff;
-    border: none;
     border: 2px solid #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: .5s;
-    width: 100%;
     max-width: 622px;
     margin: 22px auto;
-    display: block;
+    font-weight: 600;
 }
 
 .lk__btn:hover {
@@ -77,17 +89,30 @@ main {
 }
 
 .lk__btn_exit {
+    color: #fff;
+    background: red;
+    border: 2px solid red;
+    max-width: 150px;
+    margin-bottom: 22px;
     text-align: center;
     text-decoration: none;
-    background-color: red;
-    border-color: red;
-    color: #fff;
+    font-size: 14px;
 }
 
 .lk__btn_exit:hover {
     background-color: #fff;
     color: red;
     border-color: red;
+}
+
+.lk__btn_main {
+    background: transparent;
+    border-color: #fff;
+}
+
+.lk__btn_main:hover {
+    border-color: #fff;
+    color: red;
 }
 
 .lk__applications {
@@ -97,6 +122,12 @@ main {
     flex-direction: column;
     gap: 22px;
     margin: 0 auto;
+}
+
+.lk__applications__message {
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .lk__application {

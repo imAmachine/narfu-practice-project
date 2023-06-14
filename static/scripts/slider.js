@@ -2,6 +2,11 @@ let img = document.querySelector('.main__wrapper__img');
 let address = document.querySelector('.main__wrapper__subheader');
 let text = document.querySelector('.main__wrapper__text');
 
+var object = {
+  dormitory_id: null,
+  room_id: null
+}
+
 document.addEventListener('DOMContentLoaded', async function() {
   //=================================================
   // Обработка работы слайдера

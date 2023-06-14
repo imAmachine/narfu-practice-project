@@ -88,6 +88,15 @@
 }
 
 @media (max-width: 800px) {
+    .room {
+        flex-wrap: wrap;
+        margin-left: 0;
+    }
+
+    .room__img {
+        width: 100%;
+    }
+
     .main__wrapper__left {
         position: absolute;
         z-index: 2;
