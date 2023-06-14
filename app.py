@@ -74,7 +74,6 @@ def index():
         return jsonify({'error': str(e)}), 500
 
 
-
 @app.route('/lk')
 @login_required
 def profile():
@@ -206,6 +205,18 @@ def get_application_by_user_id(user_id):
         rows = db_service.exec_select(query)
         dict_of_rows = rows_to_dict(rows, Application)
         return jsonify(dict_of_rows)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/delete_application/<int:application_id>', methods=['POST'])
+def get_application_by_user_id(application_id):
+    db_service = connect_db()
+    try:
+        # Выполнение запроса для получения заявки по id пользователя
+        query = f"DELETE FROM applications WHERE application_id = {application_id}"
+        db_service.exec_query(query)
+        return redirect('/lk')
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
