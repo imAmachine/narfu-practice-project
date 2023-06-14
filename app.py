@@ -226,13 +226,13 @@ def get_application_by_user_id(user_id):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/api/change_application_status/<int:application_id>/<int:status>', methods=['POST'])
+@app.route('/api/change_application_status/<int:application_id>', methods=['POST'])
 @login_required
-def change_application_status(application_id, status):
+def change_application_status(application_id):
     db_service = connect_db()
     try:
         # Выполнение запроса для получения заявки по id пользователя
-        query = f"UPDATE applications SET status={status} WHERE application_id={application_id}"
+        query = f"UPDATE applications SET status=true WHERE application_id={application_id}"
         db_service.exec_query(query)
         return redirect('/lk')
     except Exception as e:
