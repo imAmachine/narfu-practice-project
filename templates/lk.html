@@ -65,8 +65,8 @@
                                 </form>
                             </div>
                         {% endif %}
-                        <div class="lk__application__wrapper__info"><strong>Имя:</strong> {{ assignment.user_name }}</div>
-                        <div class="lk__application__wrapper__info"><strong>Название общежития:</strong> {{ assignment.dormitory_name }}</div>
+                        <div class="lk__application__wrapper__info"><strong>ФИО:</strong> {{ assignment.user_surname ~ ' ' ~ assignment.user_name ~ ' ' ~ assignment.user_patronymic }}</div>
+                        <div class="lk__application__wrapper__info"><strong>Общежитие:</strong> {{ assignment.dormitory_name ~ ', ' ~ assignment.dormitory_address }}</div>
                         <div class="lk__application__wrapper__info"><strong>Номер комнаты:</strong> {{ assignment.room_number }}</div>
                         <div class="lk__application__wrapper__info"><strong>Дата заселения:</strong> {{ assignment.check_in_date }}</div>
                         <div class="lk__application__wrapper__info"><strong>Дата окончания заселения:</strong> {{ assignment.check_out_date }}</div>
@@ -82,7 +82,7 @@
                 {% if not applications %}
                     <div class="lk__applications__message">Активных заявок нет</div>
                 {% else %}
-                    {% for application in applications %}
+                    {% for application in applications|sort(attribute='status') %}
                         <div class="lk__application">
                             <div class="lk__application__wrapper">
                                 {% if application.status %}
@@ -114,9 +114,9 @@
                                     {% endif %}
                                 {% endif %}
                             </div>
-                            <div class="lk__application__title">{{ application.username }}</div>
-                            <div class="lk__application__title">Общежитие №3</div>
-                            <div class="lk__application__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestias qui id asperiores nihil suscipit deserunt impedit excepturi aperiam soluta.</div>
+                            <div class="lk__application__title">{{ application.user_surname ~ ' ' ~ application.user_name ~ ' ' ~ application.user_patronymic }}</div>
+                            <div class="lk__application__title">{{ 'Дата заявки: ' ~ application.application_date }}</div>
+                            <div class="lk__application__text">{{ application.dormitory_name ~', комната №' ~ application.room_number ~', адрес: ' ~ application.dormitory_address }}</div>
                         </div>
                     {% endfor %}
                 {% endif %}

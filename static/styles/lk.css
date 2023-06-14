@@ -135,7 +135,7 @@ main {
     box-shadow: 0 0 10px #000;
     max-width: 622px;
     width: 100%;
-    height: -webkit-fill-available;
+    height: fit-content;
 }
 
 .lk__application:nth-child(odd), .lk__application__wrapper__InfoBlock:nth-child(odd) {

@@ -22,7 +22,7 @@
                 </div>
             </form>
             <form method="POST" action="/api/registrate_user" class="loginForm__wrapper__registration">
-                <img class="close_img" src="../static/img/close.png">
+                <img class="close_img" src="{{ url_for('static', filename='img/close.png') }}">
                 <div class="loginForm__wrapper__title">Регистрация</div>
                 {{ regform.csrf_token }}
                 <div class="loginForm__wrapper__inputWrapper">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="loginForm__wrapper__inputWrapper">
                     {{ regform.password }}
-                    <img src="../static/img/eye.png" alt="Показать/скрыть пароль" class="loginForm__wrapper__inputWrapper__eye">
+                    <img src="{{ url_for('static', filename='img/eye.png') }}" alt="Показать/скрыть пароль" class="loginForm__wrapper__inputWrapper__eye">
                 </div>
                 <div class="loginForm__wrapper__inputWrapper">
                     {{ regform.name }}
@@ -69,7 +69,7 @@
     <div class="header__background"></div>
     <div class="header__center">
         <div class="header__center__menu">
-            <img src="../static/img/logo.png" class="logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo">
             {% if current_user.is_authenticated %}
                 <div class="buttonAuth1" style="padding: 7px 30px 10px 30px;">
                     <a class="buttonAuth__text" href="/lk">личный кабинет</a>
@@ -77,7 +77,7 @@
             {% else %}
                 <div class="buttonAuth">
                     <span class="buttonAuth__text">войти</span>
-                    <img src="../static/img/auth.png" alt="" class="buttonAuth__img">
+                    <img src="{{ url_for('static', filename='img/auth.png') }}" alt="" class="buttonAuth__img">
                 </div>
             {% endif %}
         </div>
@@ -89,7 +89,7 @@
             </div>
         </div>
         <a href="#content" class="header__center__bottom__arrow__link">
-            <img src="../static/img/arrow.png" class="header__center__bottom__arrow__img">
+            <img src="{{ url_for('static', filename='img/arrow.png') }}" class="header__center__bottom__arrow__img">
         </a>
     </div>
 {% endblock %}
@@ -100,7 +100,7 @@
         <div class="slider">
             <img class="slider__btn slider__btn_left" src="{{ url_for('static', filename='img/sliderArrow.png') }}">
             <div class="slider__wrapper">
-                {% for dormitory in dormitories %}
+                {% for dormitory in dormitories|sort(attribute='dormitory_id') %}
                     <img class="slider__img" src="{{ dormitory.photo }}" id="{{ dormitory.dormitory_id }}" data-object="{{ dormitory }}">
                 {% endfor %}
             </div>
@@ -110,7 +110,6 @@
             <h1 class="main__wrapper__header"></h1>
             <img src="" class="main__wrapper__img">
             <h2 class="main__wrapper__subheader"></h2>
-            <h1 class="main__wrapper__title"></h1>
             <h2 class="main__wrapper__text"></h2>
             <h1 class="main__wrapper__header">Список комнат общежития</h1>
             <div class="room">

@@ -60,13 +60,17 @@ class Dormitory:
 
 
 class ApplicationView:
-    def __init__(self, application_id, user_id, dormitory_name, room_number, username, application_date, status):
+    def __init__(self, application_id, user_id, dormitory_name, dormitory_address, room_number, user_name, user_surname,
+                 user_patronymic, application_date, status):
+        self.dormitory_address = dormitory_address
+        self.user_patronymic = user_patronymic
+        self.user_surname = user_surname
         self.application_id = application_id
         self.user_id = user_id
         self.dormitory_name = dormitory_name
         self.room_number = room_number
         self.application_date = application_date
-        self.username = username
+        self.user_name = user_name
         self.status = status
 
     def to_dict(self):
@@ -74,9 +78,12 @@ class ApplicationView:
             'application_id': self.application_id,
             'user_id': self.user_id,
             'dormitory_name': self.dormitory_name,
+            'dormitory_address': self.dormitory_address,
             'room_number': self.room_number,
             'application_date': self.application_date,
-            'username': self.username,
+            'user_name': self.user_name,
+            'user_surname': self.user_surname,
+            'user_patronymic': self.user_patronymic,
             'status': self.status
         }
 
@@ -100,7 +107,11 @@ class Application:
 
 
 class RoomAssignmentView:
-    def __init__(self, assignment_id, user_id, dormitory_name, room_number, user_name, check_in_date, check_out_date):
+    def __init__(self, assignment_id, user_id, dormitory_name, dormitory_address, room_number, user_name, user_surname, user_patronymic,
+                 check_in_date, check_out_date):
+        self.dormitory_address = dormitory_address
+        self.user_patronymic = user_patronymic
+        self.user_surname = user_surname
         self.assignment_id = assignment_id
         self.user_id = user_id
         self.dormitory_name = dormitory_name
@@ -114,10 +125,13 @@ class RoomAssignmentView:
             'assignment_id': self.assignment_id,
             'user_id': self.user_id,
             'dormitory_name': self.dormitory_name,
+            'dormitory_address': self.dormitory_address,
             'room_number': self.room_number,
             'check_in_date': self.check_in_date,
             'check_out_date': self.check_out_date,
             'user_name': self.user_name,
+            'user_surname': self.user_surname,
+            'user_patronymic': self.user_patronymic
         }
 
 

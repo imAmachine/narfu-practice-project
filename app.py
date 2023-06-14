@@ -74,6 +74,11 @@ def index():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/login')
+def login():
+    return redirect('/')
+
+
 def get_applications():
     db_service = connect_db()
     query = ''
@@ -97,6 +102,8 @@ def get_roomassignments():
 @app.route('/lk')
 @login_required
 def profile():
+    if not current_user.is_active:
+        return redirect('/')
     try:
         applications = get_applications()
         room_assignments = get_roomassignments()
@@ -280,4 +287,5 @@ def get_rooms_by_dormitory_id(dormitory_id):
 
 
 if __name__ == "__main__":
+    #app.run(host='192.168.3.102', debug=True)
     app.run(debug=True)

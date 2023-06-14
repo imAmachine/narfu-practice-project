@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         })
         .then(function(data) {
           if (data.length > 0) {
+            data.sort((a, b) => a.room_id - b.room_id);
             // Обработка всех кнопок комнат выбранного общежития
             data.forEach(function(room) {
               let btn = document.createElement('button');
