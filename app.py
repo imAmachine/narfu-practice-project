@@ -212,7 +212,7 @@ def get_application_by_user_id(user_id):
 
 
 @app.route('/api/change_application_status/<int:application_id>/<int:status>', methods=['POST'])
-def get_application_by_user_id(application_id, status):
+def change_application_status(application_id, status):
     db_service = connect_db()
     try:
         # Выполнение запроса для получения заявки по id пользователя
@@ -224,7 +224,7 @@ def get_application_by_user_id(application_id, status):
 
 
 @app.route('/api/delete_application/<int:application_id>', methods=['POST'])
-def get_application_by_user_id(application_id):
+def delete_application_row(application_id):
     db_service = connect_db()
     try:
         # Выполнение запроса для получения заявки по id пользователя
