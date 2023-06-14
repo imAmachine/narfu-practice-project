@@ -74,21 +74,23 @@ def index():
         return jsonify({'error': str(e)}), 500
 
 
+def get_applications():
+    db_service = connect_db()
+    query = ''
+    if current_user.permissions == 'user':
+        query = f"SELECT * FROM applications_view WHERE user_id={current_user.id}"
+    elif current_user.permissions == 'admin':
+        query = f"SELECT * FROM applications_view"
+    return db_service.exec_select(query)
+
 @app.route('/lk')
 @login_required
 def profile():
     try:
-        db_service = connect_db()
-        query = ''
-        if current_user.permissions == 'user':
-            query = f"SELECT * FROM applications_view WHERE user_id={current_user.id}"
-        elif current_user.permissions == 'admin':
-            query = f"SELECT * FROM applications_view"
-        applications = db_service.exec_select(query)
-        rows = rows_to_dict(applications, ApplicationView)
+        applications = rows_to_dict(get_applications(), ApplicationView)
     except Exception as e:
         return jsonify({"error": str(e)}, 500)
-    return render_template('lk.html', user_form=UserInfoDataLk(), applications=rows)
+    return render_template('lk.html', user_form=UserInfoDataLk(), applications=applications, )
 
 
 @app.route('/api/logout')
@@ -209,7 +211,7 @@ def get_application_by_user_id(user_id):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/api/change_application_status/<int:application_id>/<bool:status>', methods=['POST'])
+@app.route('/api/change_application_status/<int:application_id>/<boolean:status>', methods=['POST'])
 def get_application_by_user_id(application_id, status):
     db_service = connect_db()
     try:
