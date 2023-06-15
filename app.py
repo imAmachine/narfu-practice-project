@@ -249,7 +249,6 @@ def change_application_status(application_id):
 def delete_assignments_row(assignment_id):
     db_service = connect_db()
     try:
-        # Выполнение запроса для получения заявки по id пользователя
         query = f"DELETE FROM roomassignments WHERE assignment_id = {assignment_id}"
         db_service.exec_query(query)
         return redirect('/lk')
