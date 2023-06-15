@@ -58,8 +58,8 @@ main {
 
 .room__img {
     width: 50%;
+    height: 284px;
     border-radius: 15px;
-    height: fit-content;
     object-fit: contain;
 }
 

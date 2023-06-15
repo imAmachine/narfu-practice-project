@@ -69,7 +69,9 @@
     <div class="header__background"></div>
     <div class="header__center">
         <div class="header__center__menu">
-            <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo">
+            <a href="https://narfu.ru/">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo">
+            </a>
             {% if current_user.is_authenticated %}
                 <div class="buttonAuth1" style="padding: 7px 30px 10px 30px;">
                     <a class="buttonAuth__text" href="/lk">личный кабинет</a>
@@ -116,11 +118,7 @@
                 <img class="room__img">
                 <div class="room__number">
                     <div class="room__number__title">Выбери комнату</div>
-                    <div class="room__number__btns">
-                        {% for room in rooms %}
-                            <button class="room__number__btn" value="{{ room.room_id }}">{{ room.room_number }}</button>
-                        {% endfor %}
-                    </div>
+                    <div class="room__number__btns"></div>
                     {% if current_user.is_authenticated %}
                         <input type="submit" class="room__number__btnSelect" value="Создать заявку">
                     {% else %}

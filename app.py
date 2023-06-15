@@ -102,8 +102,6 @@ def get_roomassignments():
 @app.route('/lk')
 @login_required
 def profile():
-    if not current_user.is_active:
-        return redirect('/')
     try:
         applications = get_applications()
         room_assignments = get_roomassignments()
@@ -215,7 +213,7 @@ def registrate_user():
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
-        return jsonify({'message': 'kakayato huinya'})
+        return redirect('/')
 
 
 # Получение заявки по id пользователя
@@ -287,5 +285,5 @@ def get_rooms_by_dormitory_id(dormitory_id):
 
 
 if __name__ == "__main__":
-    #app.run(host='192.168.3.102', debug=True)
+    #app.run(host='192.168.3.102', debug=False)
     app.run(debug=True)

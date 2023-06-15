@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       })
       .then(function(data) {
         // Обработка успешного ответа от сервера
-        console.log(data.message); // Вывод сообщения в консоль
+        alert(data.message); // Вывод сообщения в консоль
         // Дополнительные действия по успешному созданию заявки
       })
       .catch(function(error) {
