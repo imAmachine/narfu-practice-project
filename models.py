@@ -58,7 +58,9 @@ class Dormitory:
 
 class ApplicationView:
     def __init__(self, application_id, user_id, dormitory_name, dormitory_address, room_number, user_name, user_surname,
-                 user_patronymic, application_date, status):
+                 user_patronymic, user_phone_number, user_email, application_date, status):
+        self.user_email = user_email
+        self.user_phone_number = user_phone_number
         self.dormitory_address = dormitory_address
         self.user_patronymic = user_patronymic
         self.user_surname = user_surname
@@ -81,6 +83,8 @@ class ApplicationView:
             'user_name': self.user_name,
             'user_surname': self.user_surname,
             'user_patronymic': self.user_patronymic,
+            'user_phone_number': self.user_phone_number,
+            'user_email': self.user_email,
             'status': self.status
         }
 

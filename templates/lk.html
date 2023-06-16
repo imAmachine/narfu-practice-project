@@ -115,7 +115,9 @@
                                 {% endif %}
                             </div>
                             <div class="lk__application__title">{{ application.user_surname ~ ' ' ~ application.user_name ~ ' ' ~ application.user_patronymic }}</div>
-                            <div class="lk__application__title">{{ 'Дата заявки: ' ~ application.application_date }}</div>
+                            <div class="lk__application__text">{{ 'Дата заявки: ' ~ application.application_date }}</div>
+                            <div class="lk__application__text">{{ 'Номер телефона: ' ~ application.user_phone_number }}</div>
+                            <div class="lk__application__text">{{ 'Email: ' ~ application.user_email }}</div>
                             <div class="lk__application__text">{{ application.dormitory_name ~', комната №' ~ application.room_number ~', адрес: ' ~ application.dormitory_address }}</div>
                         </div>
                     {% endfor %}
