@@ -42,6 +42,9 @@ python app.py
 
 - Flask Framework
 - Python
+- HTML
+- CSS
+- JavaScript
 
 ## Благодарности
 
