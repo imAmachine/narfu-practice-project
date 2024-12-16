@@ -14,7 +14,7 @@
 
 1. Клонируйте репозиторий на вашу локальную машину:
 
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/imAmachine/narfu-practice-project.git
 
 
 2. Перейдите в каталог проекта:
